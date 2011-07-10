@@ -121,9 +121,20 @@ class User
 	 * @Column(type="string", length=32, nullable=true)
 	 */
 	private $position;
+	/**
+	 * @Column(type="date", nullable=false)
+	 */
+	private $created_at;
+	 
+	/**
+	 * @Column(type="date", nullable=true)
+	 */
+	private $updated_at;
 	 
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
+    public function setEmail($email) { $this->email = $email; }
+    public function getEmail() {  return $this->email; }
     public function setPassword($password) { $this->password = $password; }
     public function getPassword() {  return $this->password; }
     public function setName($name) { $this->name = $name; }
@@ -136,8 +147,8 @@ class User
     public function getArrivalDate() {  return $this->arrival_date; }
     public function setBirthday($birthday) { $this->birthday = $birthday; }
     public function getBirthday() {  return $this->birthday; }
-    public function setMarriedStatus($married_status) { $this->married_status = $married_status; }
-    public function getMarriedStatus() {  return $this->married_status; }
+    public function setMarriageStatus($marriage_status) { $this->marriage_status = $marriage_status; }
+    public function getMarriageStatus() {  return $this->marriage_status; }
     public function setGender($gender) { $this->gender = $gender; }
     public function getGender() {  return $this->gender; }
     public function setReligion($religion) { $this->religion = $religion; }
@@ -152,7 +163,7 @@ class User
     public function getUndergradGraduationYear() {  return $this->undergrad_graduation_year; }
     public function setMasterUniversity($master_university) { $this->master_university = $master_university; }
     public function getMasterUniversity() {  return $this->master_university; }
-    public function setMasterDepartment($master_department) { $this->Master_department = $master_department; }
+    public function setMasterDepartment($master_department) { $this->master_department = $master_department; }
     public function getMasterDepartment() {  return $this->master_department; }
     public function setMasterGraduationYear($master_graduation_year) { $this->master_graduation_year = $master_graduation_year; }
     public function getMasterGraduationYear() {  return $this->master_graduation_year; }
@@ -168,4 +179,8 @@ class User
     public function getLeftTheCountry() {  return $this->left_the_country; }
     public function setPosition($position) { $this->position = $position; }
     public function getPosition() {  return $this->position; }
+    public function setCreatedAt($created_at) { $this->created_at = $created_at; }
+    public function getCreatedAt() {  return $this->created_at; }
+    public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }
+    public function getUpdatedAt() {  return $this->updated_at; }
 }
