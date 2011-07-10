@@ -22,18 +22,23 @@ class Home extends MY_Controller {
 		   the annoted Model called "User" where the db entry's ID
 		   is 7 */
 		
-		$user = $this->em->find('models\User','7');
+		$user = $this->em->find('models\User','5');
 		
-		/* Now, use some of the methods that we created in our User Model
+		if ($user) {
+			/* Now, use some of the methods that we created in our User Model
 		   to change the entry's data */
-		$user->setUsername('Bob');
-		// Also, since Doctrine uses transactions, we've got to tell to execute the query
-		$this->em->persist($user);
-		$this->em->flush();
+			$user->setUsername('Bob');
+			// Also, since Doctrine uses transactions, we've got to tell to execute the query
+			$this->em->persist($user);
+			$this->em->flush();
 		
-		/* Now that we're changed the "username" column in the "user" table
-		   go ahead and grab it and pass it into our view for testing. */
-		$message = $user->getUsername();		 
+			/* Now that we're changed the "username" column in the "user" table
+			   go ahead and grab it and pass it into our view for testing. */
+			$message = $user->getUsername();
+		} else {
+			$message = 'No user.';
+				 
+		}
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 		
