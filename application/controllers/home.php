@@ -208,7 +208,7 @@ class Home extends MY_Controller {
 		$message = 'Family members of user1 are '.$fam->count().' ';
 		foreach ($fam as $member) {
 			$mem = $this->em->find('models\User', $member->getMember());
-			$message = $message.$mem->getName().', ';
+			$message = $message.$mem->getName().' relationship: '.$member->getRelationship().', ';
 		}
 		
 		$data['message'] = $message;
