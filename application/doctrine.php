@@ -2,6 +2,7 @@
 chdir(dirname(__FILE__) . '/libraries');
  
 require_once 'Doctrine/Common/ClassLoader.php';
+//require_once '../fixtures/Commands.php';
  
 $classLoader = new \Doctrine\Common\ClassLoader('Doctrine');
 $classLoader->register();
@@ -53,6 +54,6 @@ $cli->addCommands(array(
     new \Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand(),
     new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand(),
     new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
- 
+   // new \Doctrine\ORM\Tools\Console\Command\LoadDataCommand(),
 ));
 $cli->run();

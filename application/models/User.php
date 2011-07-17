@@ -1,7 +1,7 @@
 <?php
  
 namespace models;
- 
+use Doctrine\Common\Collections\ArrayCollection; 
 /**
  * @Entity
  * @Table(name="user")
@@ -121,6 +121,11 @@ class User
 	 * @Column(type="string", length=32, nullable=true)
 	 */
 	private $position;
+	
+	/**
+	* @OneToMany(targetEntity="Family", mappedBy="user")
+	*/
+	private $families;
 	/**
 	 * @Column(type="date", nullable=false)
 	 */
@@ -131,6 +136,10 @@ class User
 	 */
 	private $updated_at;
 	 
+	public function __construct()
+	{
+		$this->families = new ArrayCollection();
+	}
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
     public function setEmail($email) { $this->email = $email; }
@@ -179,6 +188,8 @@ class User
     public function getLeftTheCountry() {  return $this->left_the_country; }
     public function setPosition($position) { $this->position = $position; }
     public function getPosition() {  return $this->position; }
+    public function setFamilies($families) { $this->families = $families; }
+    public function getFamilies() {  return $this->families; }
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }
