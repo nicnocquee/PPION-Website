@@ -40,7 +40,7 @@ class Post
 	private $flag;
         
          /**
-        * @ManyToMany(targetEntity="Tag", inversedBy="post")
+        * @ManyToMany(targetEntity="Tag", inversedBy="posts")
         * @JoinTable(name="posts_tags")
         */
         private $tags;

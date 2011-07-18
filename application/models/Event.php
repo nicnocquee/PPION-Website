@@ -63,7 +63,11 @@ class Event
 	 * @Column(type="string", length=1000, nullable=false)
 	 */
 	private $limitation;
-	 
+	/**
+        * @ManyToMany(targetEntity="EventTag", inversedBy="event")
+        * @JoinTable(name="events_tags")
+        */
+        private $tags;
 	/**
 	 * @Column(type="datetime", nullable=false)
 	 */
@@ -99,7 +103,8 @@ class Event
     public function getTimeend() {  return $this->timeEnd; }
     public function setLimitation($limitation) { $this->limitation = $limitation; }
     public function getLimitation() {  return $this->limitation; }
-
+    public function setTags($tags) { $this->tags = $tags; }
+    public function getTags() {  return $this->tags; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
