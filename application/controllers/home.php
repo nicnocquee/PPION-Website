@@ -329,4 +329,46 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addPosts() {
+		$user1 = $this->em->find('models\User','1');
+		
+		$post = new models\Post;
+		$post->setUser($user1);
+		$post->setTitle("First Post");
+		$post->setContent("Lorem ipsum first post bla bla bla");
+		
+		$tag1 = new models\Tag;
+		$tag1->setName('iseng');
+		$tag2 = new models\Tag;
+		$tag2->setName('first');
+		$tag3 = new models\Tag;
+		$tag3->setName('ppion');
+		$this->em->persist($tag1);
+		$this->em->persist($tag2);
+		$this->em->persist($tag3);
+		
+		$post->setTags(array($tag1, $tag2, $tag3));
+		
+		$this->em->persist($post);
+		$this->em->flush();
+		
+		$data['message'] = 'done';
+		$this->load->view('home', $data);
+	}
+	
+	public function getPosts(){
+		$post = $this->em->find('models\Post','1');
+		$message = 'Post title: '.$post->getTitle().'</br>';
+		$message = $message.'Post Author: '.$post->getUser()->getName().'</br>';
+		$message = $message.'Post Content: '.$post->getContent().'</br>';
+		$message = $message.'Created at: '.$post->getCreatedAt()->format('Y/m/d H:i:s').'</br>';
+		$message = $message.'Tags: ';
+		$tags = $post->getTags();
+		foreach ($tags as $tag) {
+			$message = $message.$tag->getName().' ';
+		}
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }

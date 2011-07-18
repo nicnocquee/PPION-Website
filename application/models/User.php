@@ -4,7 +4,7 @@ namespace models;
 use Doctrine\Common\Collections\ArrayCollection; 
 /**
  * @Entity
- * @Table(name="user")
+ * @Table(name="users")
  */
 
 class User
@@ -139,6 +139,10 @@ class User
 	*/
 	private $photos;
 	/**
+	* @OneToMany(targetEntity="Post", mappedBy="user")
+	*/
+	private $posts;
+	/**
 	 * @Column(type="date", nullable=false)
 	 */
 	private $created_at;
@@ -211,6 +215,8 @@ class User
     public function getExpertises() {  return $this->expertises; }
     public function setPhotos($photos) { $this->photos = $photos; }
     public function getPhotos() {  return $this->photos; }
+    public function setPosts($post) { $this->post = $post; }
+    public function getPosts() {  return $this->post; }
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }
