@@ -251,4 +251,41 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addExpertises() {
+		$user1 = $this->em->find('models\User','1');
+		
+		$contact1 = new models\Expertise;
+		$contact1->setUser($user1);
+		$contact1->setName('biology');
+		$this->em->persist($contact1);
+		$this->em->flush();
+		
+		$contact1 = new models\Expertise;
+		$contact1->setUser($user1);
+		$contact1->setName('math');
+		$this->em->persist($contact1);
+		$this->em->flush();
+		
+		$contacts = $user1->getExpertises();
+		$message = 'Expertises are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getName()."</br>";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
+	
+	public function getExpertises() {
+		$user1 = $this->em->find('models\User','1');
+		$contacts = $user1->getExpertises();
+		$message = 'Expertises are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getName()."</br>";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }
