@@ -288,4 +288,45 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addPhotos() {
+		$user1 = $this->em->find('models\User','1');
+		
+		$photo1 = new models\Photo;
+		$photo1->setUser($user1);
+		$photo1->setUrl('http://something.jpg');
+		$photo1->setDirection('left');
+		$photo1->setProfile(0);
+		$this->em->persist($photo1);
+		$this->em->flush();
+		
+		$photo1 = new models\Photo;
+		$photo1->setUser($user1);
+		$photo1->setUrl('http://something2.jpg');
+		$photo1->setDirection('right');
+		$photo1->setProfile(1);
+		$this->em->persist($photo1);
+		$this->em->flush();
+		
+		$contacts = $user1->getPhotos();
+		$message = 'Photos are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getUrl()."</br>";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
+	
+	public function getPhotos() {
+		$user1 = $this->em->find('models\User','1');
+		$contacts = $user1->getPhotos();
+		$message = 'Photos are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getUrl()."</br>";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }

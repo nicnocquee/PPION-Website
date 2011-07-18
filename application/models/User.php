@@ -135,6 +135,10 @@ class User
 	*/
 	private $expertises;
 	/**
+	* @OneToMany(targetEntity="Photo", mappedBy="user")
+	*/
+	private $photos;
+	/**
 	 * @Column(type="date", nullable=false)
 	 */
 	private $created_at;
@@ -205,6 +209,8 @@ class User
     public function getContacts() {  return $this->contacts; }
     public function setExpertises($expertises) { $this->expertises = $expertises; }
     public function getExpertises() {  return $this->expertises; }
+    public function setPhotos($photos) { $this->photos = $photos; }
+    public function getPhotos() {  return $this->photos; }
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }
