@@ -363,16 +363,28 @@ class modelsUserProxy extends \models\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getPhotos();
     }
 
-    public function setPosts($post)
+    public function setPosts($posts)
     {
         $this->_load();
-        return parent::setPosts($post);
+        return parent::setPosts($posts);
     }
 
     public function getPosts()
     {
         $this->_load();
         return parent::getPosts();
+    }
+
+    public function setEvents($events)
+    {
+        $this->_load();
+        return parent::setEvents($events);
+    }
+
+    public function getEvents()
+    {
+        $this->_load();
+        return parent::getEvents();
     }
 
     public function setCreatedAt($created_at)
@@ -402,6 +414,6 @@ class modelsUserProxy extends \models\User implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'name', 'hometown', 'affiliation', 'arrival_date', 'birthday', 'marriage_status', 'gender', 'religion', 'introduction', 'undergrad_university', 'undergrad_department', 'undergrad_graduation_year', 'master_university', 'master_department', 'master_graduation_year', 'phd_university', 'phd_department', 'phd_graduation_year', 'informal_skill', 'left_the_country', 'position', 'families', 'contacts', 'expertises', 'photos', 'posts', 'created_at', 'updated_at');
+        return array('__isInitialized__', 'id', 'email', 'password', 'name', 'hometown', 'affiliation', 'arrival_date', 'birthday', 'marriage_status', 'gender', 'religion', 'introduction', 'undergrad_university', 'undergrad_department', 'undergrad_graduation_year', 'master_university', 'master_department', 'master_graduation_year', 'phd_university', 'phd_department', 'phd_graduation_year', 'informal_skill', 'left_the_country', 'position', 'families', 'contacts', 'expertises', 'photos', 'events', 'posts', 'created_at', 'updated_at');
     }
 }

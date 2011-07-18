@@ -464,4 +464,61 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addEvents() {
+		$user = $this->em->find('models\User','1');
+		
+		$event = new models\Event;
+		$event->setUser($user);
+		$event->setName('Hanami');
+		$event->setDescription('Hanami makan2');
+		$event->setPlace('Osaka Castle');
+		$event->setDeadline(new DateTime('2011/08/21'));
+		$event->setCost(3000);
+		$event->setTimestart(new DateTime('2011/09/01'));
+		$event->setTimeend(new DateTime('2011/09/01'));
+		$event->setLimitation('');
+		
+		$this->em->persist($event);
+		
+		$event = new models\Event;
+		$event->setUser($user);
+		$event->setName('New year');
+		$event->setDescription('New year makan2');
+		$event->setPlace('Onohara');
+		$event->setDeadline(new DateTime('2011/12/21'));
+		$event->setCost(3000);
+		$event->setTimestart(new DateTime('2011/12/31'));
+		$event->setTimeend(new DateTime('2012/01/01'));
+		$event->setLimitation('Single only');
+		
+		$this->em->persist($event);
+		
+		$this->em->flush();
+		
+		$data['message'] = 'done';
+		$this->load->view('home', $data);
+	}
+	
+	public function getEvents() {
+		$dql = 'select e from models\Event e';
+		$query = $this->em->createQuery($dql);
+		$events = $query->getResult();
+
+		$message = 'There are '.count($events).' events:</br>';
+		foreach ($events as $event){
+			$message = $message.'  '.'Event name: '.$event->getName().'</br>';
+			$message = $message.'  '.'Event creator: '.$event->getUser()->getName().'</br>';
+			$message = $message.'  '.'Event description: '.$event->getDescription().'</br>';
+			$message = $message.'  '.'Event place: '.$event->getPlace().'</br>';
+			$message = $message.'  '.'Event registration deadline: '.$event->getDeadline()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event cost: '.$event->getCost().'</br>';
+			$message = $message.'  '.'Event start: '.$event->getTimestart()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event end: '.$event->getTimeend()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event limitation: '.$event->getLimitation().'</br></br>';
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }
