@@ -73,6 +73,11 @@ class Event
         * @JoinTable(name="events_members")
         */
         private $members;
+        /**
+        * @OneToMany(targetEntity="Rsvp", mappedBy="event")
+        * @JoinTable(name="events_rsvps")
+        */
+        private $rsvps;
 	/**
 	 * @Column(type="datetime", nullable=false)
 	 */
@@ -112,6 +117,8 @@ class Event
     public function getTags() {  return $this->tags; }
     public function setMembers($members) { $this->members = $members; }
     public function getMembers() {  return $this->members; }
+    public function setRsvps($rsvps) { $this->rsvps = $rsvps; }
+    public function getRsvps() {  return $this->rsvps; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
