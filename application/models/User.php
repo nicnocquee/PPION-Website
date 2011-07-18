@@ -127,6 +127,10 @@ class User
 	*/
 	private $families;
 	/**
+	* @OneToMany(targetEntity="Contact", mappedBy="user")
+	*/
+	private $contacts;
+	/**
 	 * @Column(type="date", nullable=false)
 	 */
 	private $created_at;
@@ -139,7 +143,10 @@ class User
 	public function __construct()
 	{
 		$this->families = new ArrayCollection();
+		$this->contacts = new ArrayCollection();
+		$this->created_at = new \DateTime("now");
 	}
+    
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
     public function setEmail($email) { $this->email = $email; }
@@ -190,6 +197,8 @@ class User
     public function getPosition() {  return $this->position; }
     public function setFamilies($families) { $this->families = $families; }
     public function getFamilies() {  return $this->families; }
+    public function setContacts($contacts) { $this->contacts = $contacts; }
+    public function getContacts() {  return $this->contacts; }
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }

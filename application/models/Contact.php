@@ -4,10 +4,10 @@ namespace models;
  
 /**
  * @Entity
- * @Table(name="family")
+ * @Table(name="contacts")
  */
 
-class Family
+class Contact
 {
 	/**
 	 * @Id
@@ -17,7 +17,7 @@ class Family
 	private $id;
 	 
 	/**
-	 * @ManyToOne(targetEntity="User", inversedBy="families")
+	 * @ManyToOne(targetEntity="User", inversedBy="contacts")
 	 * @JoinColumns({
 		@JoinColumn(name="user_id", referencedColumnName="id")
 	 * })
@@ -25,19 +25,19 @@ class Family
 	private $user;
 	
 	/**
-	 * @Column(type="integer", nullable=false)
+	 * @Column(type="string", length=200, nullable=false)
 	 */
-	private $member;
+	private $address;
 	 
 	/**
 	 * @Column(type="string", length=64, nullable=false)
 	 */
-	private $relationship;
-	
-	/**
+	private $type;
+        
+        /**
 	 * @Column(type="boolean", nullable=false)
 	 */
-	private $confirmed;
+	private $visibility;
 	
 	/**
 	 * @Column(type="date", nullable=false)
@@ -51,19 +51,19 @@ class Family
 	
 	public function __construct()
 	{
-		$this->created_at = new \DateTime("now");
+            $this->created_at = new \DateTime("now");
 	}
-	
+        
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
     public function setUser($user) { $this->user = $user; }
     public function getUser() {  return $this->user; }
-    public function setMember($member) { $this->member = $member; }
-    public function getMember() {  return $this->member; }
-    public function setRelationship($relationship) { $this->relationship = $relationship; }
-    public function getRelationship() {  return $this->relationship; }
-    public function setConfirmed($confirmed) { $this->confirmed = $confirmed; }
-    public function getConfirmed() {  return $this->confirmed; }
+    public function setAddress($address) { $this->address = $address; }
+    public function getAddress() {  return $this->address; }
+    public function setType($type) { $this->type = $type; }
+    public function getType() {  return $this->type; }
+    public function setVisibility($visibility) { $this->visibility = $visibility; }
+    public function getVisibility() {  return $this->visibility; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }

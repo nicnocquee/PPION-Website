@@ -27,7 +27,12 @@ class Doctrine {
  
     // Set up caches
     $config = new Configuration;
-    $cache = new ArrayCache;
+    // Caching Configuration (5)
+    //if (APPLICATION_ENV == "development") {
+      $cache = new \Doctrine\Common\Cache\ArrayCache();
+    //} else {
+    //  $cache = new \Doctrine\Common\Cache\ApcCache();
+    //}
     $config->setMetadataCacheImpl($cache);
     $config->setQueryCacheImpl($cache);
  
@@ -56,7 +61,8 @@ class Doctrine {
         'dbname' =>   $db['default']['database']
     );
  
+    //$evm = new Doctrine\Common\EventManager();
     // Create EntityManager
-    $this->em = EntityManager::create($connectionOptions, $config);
+    $this->em = EntityManager::create($connectionOptions, $config);//, $evm);
   }
 }

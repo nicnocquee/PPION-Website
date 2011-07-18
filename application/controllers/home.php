@@ -71,7 +71,7 @@ class Home extends MY_Controller {
 		$user->setInformalSkill('iOS development');
 		$user->setLeftTheCountry(0);
 		$user->setPosition('Web developer');
-		$user->setCreatedAt(new DateTime());
+		//$user->setCreatedAt(new DateTime());
 		$this->em->persist($user);
 		$this->em->flush();
 		
@@ -109,7 +109,7 @@ class Home extends MY_Controller {
 		$user->setInformalSkill('iOS development');
 		$user->setLeftTheCountry(0);
 		$user->setPosition('Web developer');
-		$user->setCreatedAt(new DateTime());
+		//$user->setCreatedAt(new DateTime());
 		$this->em->persist($user);
 		$this->em->flush();
 		
@@ -147,7 +147,7 @@ class Home extends MY_Controller {
 		$user->setInformalSkill('iOS development');
 		$user->setLeftTheCountry(0);
 		$user->setPosition('Web developer');
-		$user->setCreatedAt(new DateTime());
+		//$user->setCreatedAt(new DateTime());
 		$this->em->persist($user);
 		$this->em->flush();
 		
@@ -174,7 +174,7 @@ class Home extends MY_Controller {
 		$family1->setMember($user2->getId());
 		$family1->setRelationship("son");
 		$family1->setConfirmed(1);
-		$family1->setCreatedAt(new DateTime());
+		//$family1->setCreatedAt(new DateTime());
 		$this->em->persist($family1);
 		$this->em->flush();
 		
@@ -183,13 +183,9 @@ class Home extends MY_Controller {
 		$family2->setMember($user3->getId());
 		$family2->setRelationship("daughter");
 		$family2->setConfirmed(1);
-		$family2->setCreatedAt(new DateTime());
+		//$family2->setCreatedAt(new DateTime());
 		$this->em->persist($family2);
 		$this->em->flush();
-		
-		/*$user1->setFamilies(array($family1, $family2));
-		$this->em->persist($user1);
-		$this->em->flush();*/
 		
 		$fam = $user1->getFamilies();
 		$message = 'Family members are '.$fam->count().' ';
@@ -214,5 +210,45 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
-
+	
+	public function addContacts() {
+		$user1 = $this->em->find('models\User','1');
+		
+		$contact1 = new models\Contact;
+		$contact1->setUser($user1);
+		$contact1->setAddress('09017178823');
+		$contact1->setType('phone');
+		$contact1->setVisibility(0);
+		$this->em->persist($contact1);
+		$this->em->flush();
+		
+		$contact2 = new models\Contact;
+		$contact2->setUser($user1);
+		$contact2->setAddress('hirose mansion');
+		$contact2->setType('address');
+		$contact2->setVisibility(0);
+		$this->em->persist($contact2);
+		$this->em->flush();
+		
+		$contacts = $user1->getContacts();
+		$message = 'Contacts are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getAddress().', '.$member->getType()."\n";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
+	
+	public function getContacts() {
+		$user1 = $this->em->find('models\User','1');
+		$contacts = $user1->getContacts();
+		$message = 'Contacts are '.$contacts->count().' ';
+		foreach ($contacts as $member) {
+			$message = $message.$member->getAddress().', '.$member->getType()."</br>";
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }
