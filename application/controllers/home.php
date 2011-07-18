@@ -571,4 +571,62 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addEventMembers() {
+		$event = $this->em->find('models\Event','1');
+		$user1 = $this->em->find('models\User','1');
+		$user2 = $this->em->find('models\User','2');
+		
+		$member = new models\EventMember;
+		$member->setEvent($event);
+		$member->setUser($user1);
+		$member->setPosition('leader');
+		$member->setResponsibility('lead');
+		$this->em->persist($member);
+		
+		$member = new models\EventMember;
+		$member->setEvent($event);
+		$member->setUser($user2);
+		$member->setPosition('transportation');
+		$member->setResponsibility('taking care of cars');
+		$this->em->persist($member);
+		
+		$this->em->flush();
+		$data['message'] = 'done';
+		$this->load->view('home', $data);
+	}
+	
+	public function getEventMembers(){
+		$dql = 'select e from models\Event e';
+		$query = $this->em->createQuery($dql);
+		$events = $query->getResult();
+
+		$message = 'There are '.count($events).' events:</br>';
+		foreach ($events as $event){
+			$message = $message.'  '.'Event name: '.$event->getName().'</br>';
+			$message = $message.'  '.'Event creator: '.$event->getUser()->getName().'</br>';
+			$message = $message.'  '.'Event description: '.$event->getDescription().'</br>';
+			$message = $message.'  '.'Event place: '.$event->getPlace().'</br>';
+			$message = $message.'  '.'Event registration deadline: '.$event->getDeadline()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event cost: '.$event->getCost().'</br>';
+			$message = $message.'  '.'Event start: '.$event->getTimestart()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event end: '.$event->getTimeend()->format('Y/m/d').'</br>';
+			$message = $message.'  '.'Event limitation: '.$event->getLimitation().'</br>';
+			$message = $message.'  '.'Event tags: ';
+			$tags = $event->getTags();
+			foreach ($tags as $tag) {
+				$message = $message.$tag->getName().', ';
+			}
+			$message = $message.'</br>';
+			$message = $message.'  Event members: </br>';
+			$members = $event->getMembers();
+			foreach ($members as $member){
+				$message = $message.'    '.$member->getUser()->getName().' as '.$member->getPosition().'</br>';
+			}
+			$message = $message.'</br>';
+		}
+		
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }
