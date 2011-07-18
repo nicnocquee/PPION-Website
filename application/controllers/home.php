@@ -416,4 +416,52 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addLikes() {
+		$post = $this->em->find('models\Post','1');
+		$user = $this->em->find('models\User','2');
+		$user2 = $this->em->find('models\User','3');
+		
+		$like = new models\Like;
+		$like->setPost($post);
+		$like->setUser($user);
+		$this->em->persist($like);
+		
+		$like = new models\Like;
+		$like->setPost($post);
+		$like->setUser($user2);
+		$this->em->persist($like);
+		
+		$this->em->flush();
+		
+		$data['message'] = 'done';
+		$this->load->view('home', $data);
+	}
+	
+	public function getLikes(){
+		$post = $this->em->find('models\Post','1');
+		$message = 'Post title: '.$post->getTitle().'</br>';
+		$message = $message.'Post Author: '.$post->getUser()->getName().'</br>';
+		$message = $message.'Post Content: '.$post->getContent().'</br>';
+		$message = $message.'Created at: '.$post->getCreatedAt()->format('Y/m/d H:i:s').'</br>';
+		$message = $message.'Tags: ';
+		$tags = $post->getTags();
+		foreach ($tags as $tag) {
+			$message = $message.$tag->getName().' ';
+		}
+		$message = $message.'</br>Comments: </br>';
+		$comments = $post->getComments();
+		foreach ($comments as $comment) {
+			$message = $message.'  '.'By: '.$comment->getUser()->getName().'</br>';
+			$message = $message.'  '.'On: '.$comment->getCreatedAt()->format('Y/m/d H:i:s').'</br>';
+			$message = $message.'  '.'Says: '.$comment->getContent().'</br></br>';
+		}
+		$message = $message.'</br>Liked by: </br>';
+		$likes = $post->getLikes();
+		foreach ($likes as $like) {
+			$message = $message.$like->getUser()->getName().', ';
+		}
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }

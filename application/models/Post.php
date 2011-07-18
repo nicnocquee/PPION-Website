@@ -49,6 +49,11 @@ class Post
 	* @OneToMany(targetEntity="Comment", mappedBy="post")
 	*/
         private $comments;
+        
+        /**
+	* @OneToMany(targetEntity="Like", mappedBy="post")
+	*/
+        private $likes;
 	 
 	/**
 	 * @Column(type="datetime", nullable=false)
@@ -79,6 +84,8 @@ class Post
     public function getTags() {  return $this->tags; }
     public function setComments($comments) { $this->comments = $comments; }
     public function getComments() {  return $this->comments; }
+    public function setLikes($likes) { $this->likes = $likes; }
+    public function getLikes() {  return $this->likes; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
