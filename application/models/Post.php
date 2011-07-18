@@ -44,14 +44,19 @@ class Post
         * @JoinTable(name="posts_tags")
         */
         private $tags;
+        
+        /**
+	* @OneToMany(targetEntity="Comment", mappedBy="post")
+	*/
+        private $comments;
 	 
 	/**
-	 * @Column(type="date", nullable=false)
+	 * @Column(type="datetime", nullable=false)
 	 */
 	private $created_at;
 	 
 	/**
-	 * @Column(type="date", nullable=true)
+	 * @Column(type="datetime", nullable=true)
 	 */
 	private $updated_at;
 	
@@ -72,6 +77,8 @@ class Post
     public function getFlag() {  return $this->flag; }
     public function setTags($tags) { $this->tags = $tags; }
     public function getTags() {  return $this->tags; }
+    public function setComments($comments) { $this->comments = $comments; }
+    public function getComments() {  return $this->comments; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }

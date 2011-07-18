@@ -371,4 +371,49 @@ class Home extends MY_Controller {
 		$data['message'] = $message;
 		$this->load->view('home', $data);
 	}
+	
+	public function addComments() {
+		$post = $this->em->find('models\Post','1');
+		$user = $this->em->find('models\User','2');
+		$user2 = $this->em->find('models\User','3');
+		
+		$comment = new models\Comment;
+		$comment->setPost($post);
+		$comment->setUser($user);
+		$comment->setContent("Ugly article ....");
+		$this->em->persist($comment);
+		
+		$comment = new models\Comment;
+		$comment->setPost($post);
+		$comment->setUser($user2);
+		$comment->setContent("I agree ....");
+		$this->em->persist($comment);
+		
+		$this->em->flush();
+		
+		$data['message'] = 'done';
+		$this->load->view('home', $data);
+	}
+	
+	public function getComments(){
+		$post = $this->em->find('models\Post','1');
+		$message = 'Post title: '.$post->getTitle().'</br>';
+		$message = $message.'Post Author: '.$post->getUser()->getName().'</br>';
+		$message = $message.'Post Content: '.$post->getContent().'</br>';
+		$message = $message.'Created at: '.$post->getCreatedAt()->format('Y/m/d H:i:s').'</br>';
+		$message = $message.'Tags: ';
+		$tags = $post->getTags();
+		foreach ($tags as $tag) {
+			$message = $message.$tag->getName().' ';
+		}
+		$message = $message.'</br>Comments: </br>';
+		$comments = $post->getComments();
+		foreach ($comments as $comment) {
+			$message = $message.'  '.'By: '.$comment->getUser()->getName().'</br>';
+			$message = $message.'  '.'On: '.$comment->getCreatedAt()->format('Y/m/d H:i:s').'</br>';
+			$message = $message.'  '.'Says: '.$comment->getContent().'</br></br>';
+		}
+		$data['message'] = $message;
+		$this->load->view('home', $data);
+	}
 }

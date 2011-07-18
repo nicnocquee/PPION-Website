@@ -4,10 +4,10 @@ namespace models;
  
 /**
  * @Entity
- * @Table(name="contacts")
+ * @Table(name="comments")
  */
 
-class Contact
+class Comment
 {
 	/**
 	 * @Id
@@ -15,30 +15,25 @@ class Contact
 	 * @GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
-	 
-	/**
-	 * @ManyToOne(targetEntity="User", inversedBy="contacts")
-	 * @JoinColumns({
-		@JoinColumn(name="user_id", referencedColumnName="id")
-	 * })
-	 */
-	private $user;
-	
-	/**
-	 * @Column(type="string", length=200, nullable=false)
-	 */
-	private $address;
-	 
-	/**
-	 * @Column(type="string", length=64, nullable=false)
-	 */
-	private $type;
         
         /**
-	 * @Column(type="boolean", nullable=false)
+	 * @ManyToOne(targetEntity="Post", inversedBy="comments")
+	 * @JoinColumns({
+		@JoinColumn(name="post_id", referencedColumnName="id")
+	 * })
 	 */
-	private $visibility;
-	
+	private $post;
+        
+        /**
+        * @ManyToOne(targetEntity="User")
+        */
+        private $user;
+	 
+	/**
+	 * @Column(type="string", length=500, nullable=false)
+	 */
+	private $content;
+	 
 	/**
 	 * @Column(type="datetime", nullable=false)
 	 */
@@ -51,19 +46,18 @@ class Contact
 	
 	public function __construct()
 	{
-            $this->created_at = new \DateTime("now");
+            $format = 'Y-m-d H:i:s';
+            $this->created_at = new \DateTime();
 	}
         
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
+    public function setPost($post) { $this->post = $post; }
+    public function getPost() {  return $this->post; }
     public function setUser($user) { $this->user = $user; }
     public function getUser() {  return $this->user; }
-    public function setAddress($address) { $this->address = $address; }
-    public function getAddress() {  return $this->address; }
-    public function setType($type) { $this->type = $type; }
-    public function getType() {  return $this->type; }
-    public function setVisibility($visibility) { $this->visibility = $visibility; }
-    public function getVisibility() {  return $this->visibility; }
+    public function setContent($content) { $this->content = $content; }
+    public function getContent() {  return $this->content; }
     
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }

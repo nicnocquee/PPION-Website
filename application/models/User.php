@@ -143,12 +143,12 @@ class User
 	*/
 	private $posts;
 	/**
-	 * @Column(type="date", nullable=false)
+	 * @Column(type="datetime", nullable=false)
 	 */
 	private $created_at;
 	 
 	/**
-	 * @Column(type="date", nullable=true)
+	 * @Column(type="datetime", nullable=true)
 	 */
 	private $updated_at;
 	 
