@@ -43,7 +43,7 @@
 	</p>
 	<p>
 		<?php echo form_error('arrival_date'); ?>
-		<label for="arrival_date">Tahun tiba di Jepang: (YYYY) </label>
+		<label for="arrival_date">Tahun tiba di Jepang: (YYYY/MM/DD) </label>
 		<?php echo form_input('arrival_date', set_value('arrival_date')); ?>
 	</p>
 	<p>

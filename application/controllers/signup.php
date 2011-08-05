@@ -14,11 +14,38 @@ class Signup extends MY_Controller {
 	}
 	
 	public function submit() {
-
+		
 		if ($this->_submit_validate() === FALSE) {
 			$this->index();
 			return;
 		}
+		
+		$user = new models\User;
+		$user->setEmail($this->input->post('email'));
+		$user->setName($this->input->post('name'));
+		$user->setPassword(md5($this->input->post('password')));
+		$user->setHometown($this->input->post('hometown'));
+		$user->setAffiliation($this->input->post('affiliation'));
+		$user->setArrivalDate(new DateTime(str_replace('/', '-', $this->input->post('arrival_date'))));
+		$user->setBirthday(new DateTime(str_replace('/', '-', $this->input->post('birthday'))));
+		$user->setMarriageStatus($this->input->post('status'));
+		$user->setGender($this->input->post('gender'));
+		$user->setReligion($this->input->post('religion'));
+		$user->setIntroduction($this->input->post('introduction'));
+		$user->setUndergradUniversity($this->input->post('undergrad_university'));
+		$user->setUndergradDepartment($this->input->post('undergrad_department'));
+		$user->setUndergradGraduationYear($this->input->post('undergrad_graduation_year'));
+		$user->setMasterUniversity($this->input->post('master_university'));
+		$user->setMasterDepartment($this->input->post('master_department'));
+		$user->setMasterGraduationYear($this->input->post('master_graduation_year'));
+		$user->setPhdUniversity($this->input->post('phd_university'));
+		$user->setPhdDepartment($this->input->post('phd_department'));
+		$user->setPhdGraduationYear($this->input->post('phd_graduation_year'));
+		$user->setInformalSkill($this->input->post('informal_skill'));
+		$user->setLeftTheCountry($this->input->post('left_the_country'));
+		$user->setPosition($this->input->post('position'));
+		$this->em->persist($user);
+		$this->em->flush();
 
 		$this->load->view('submit_success');
 
@@ -28,7 +55,7 @@ class Signup extends MY_Controller {
 
 		// validation rules
 		$this->form_validation->set_rules('name', 'Nama',
-			'trim|required|alpha_numeric');
+			'trim|required');
 
 		$this->form_validation->set_rules('password', 'Password',
 			'required|min_length[6]|max_length[12]');
@@ -46,7 +73,7 @@ class Signup extends MY_Controller {
 			'');
 		
 		$this->form_validation->set_rules('arrival_date', 'Tahun tiba di Jepang',
-			'trim|required|numeric|exact_length[4]');
+			'trim|required|date');
 		$this->form_validation->set_rules('birthday', 'Tanggal lahir',
 			'trim|date');
 		$this->form_validation->set_rules('marriage_status', 'Status',
