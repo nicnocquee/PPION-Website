@@ -227,4 +227,33 @@ class User
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }
     public function getUpdatedAt() {  return $this->updated_at; }
+    
+    public function toArray() {
+    	return array(
+    		'id' => $this->id,
+    		'email' => $this->email,
+    		'name' => $this->name,
+    		'hometown' => $this->hometown,
+    		'affiliation' => $this->affiliation,
+    		'arrival_date' => $this->arrival_date,
+    		'birthday' => $this->birthday,
+    		'marriage_status' => $this->marriage_status,
+    		'gender' => $this->gender,
+    		'religion' => $this->religion,
+    		'introduction' => $this->introduction,
+    		'undergrad_university' => $this->undergrad_university,
+    		'undergrad_department' => $this->undergrad_department,
+    		'undergrad_graduation_year' => $this->undergrad_graduation_year,
+    		'master_university' => $this->master_university,
+    		'master_department' => $this->master_department,
+    		'master_graduation_year' => $this->master_graduation_year,
+    		'phd_university' => $this->phd_university,
+    		'phd_department' => $this->phd_department,
+    		'phd_graduation_year' => $this->phd_graduation_year,
+    		'informal_skill' => $this->informal_skill,
+    		'left_the_country' => $this->left_the_country,
+    		'position' => $this->position,
+    		'contacts' => $this->contacts
+    	);
+    }
 }
