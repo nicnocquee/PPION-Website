@@ -14,6 +14,17 @@ class Signup extends MY_Controller {
 	}
 	
 	public function submit() {
+		/*$this->load->library('unit_test');
+		echo $this->unit->run($this->input->post('number_of_contacts'), 4);
+		return;*/
+		/*for ($i=0; $i<$this->input->post('number_of_contacts'); $i++) {
+			$address = $this->input->post('address'.($i+1));
+			echo $address;
+			if(!(is_null($address)) && $address!='') {
+				echo 'not null';
+			}
+		}
+		return;*/
 		
 		if ($this->_submit_validate() === FALSE) {
 			$this->index();
@@ -46,6 +57,19 @@ class Signup extends MY_Controller {
 		$user->setPosition($this->input->post('position'));
 		$this->em->persist($user);
 		$this->em->flush();
+		
+		for ($i=0; $i<$this->input->post('number_of_contacts'); $i++) {
+			$address = $this->input->post('address'.($i+1));
+			if(!(is_null($address)) && $address!='') {
+				$contact1 = new models\Contact;
+				$contact1->setUser($user);
+				$contact1->setAddress($address);
+				$contact1->setType($this->input->post('addresstype'.($i+1)));
+				$contact1->setVisibility(0);
+				$this->em->persist($contact1);
+				$this->em->flush();
+			}
+		}
 
 		$this->load->view('submit_success');
 

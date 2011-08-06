@@ -4,12 +4,33 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Signup Form</title>
 </head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script>
+var current = 1;
+
+function addContact() {
+	console.log('running addPerson')
+	//current keeps track of how many people we have.
+	current++;
+	var strToAdd = '<p><label for="contact">Address: </label><input type="text" name="address'+current+'" value=""  /><select name="addresstype'+current+'">'
+strToAdd+='<option value="0">Phone</option><option value="1">Home address</option><option value="2">Email</option><option value="3">Facebook</option><option value="4">YM</option><option value="5">Twitter</option></select></p>'
+	
+	console.log(strToAdd)
+	$('#contactField').append(strToAdd)
+	oFormObject = document.forms['signup_form']
+	oFormObject.elements["number_of_contacts"].value = current
+}
+
+$(document).ready(function(){
+	$('#addContact').click(addContact)
+});
+</script>
 <body>
 
 <div id="signup_form">
 
 	<p class="heading">New User Signup</p>
-	<?php echo form_open('signup/submit'); ?>
+	<?php echo form_open('signup/submit', array('id' => 'signup_form')); ?>
 	
 	<p>
 		<?php echo form_error('email'); ?>
@@ -30,6 +51,17 @@
 		<?php echo form_error('name'); ?>
 		<label for="name">Nama: </label>
 		<?php echo form_input('name', set_value('name')); ?>
+	</p>
+	<p>
+		<?php echo form_fieldset('Contact Information', array('id'=>'contactField'));?>
+		<label for="contact">Address: </label><?php echo form_input('address1', set_value('address1')); ?><?php echo form_dropdown('addresstype1', array('Phone', 'Home address', 'Email', 'Facebook', 'YM', 'Twitter'), set_value('addresstype1')); ?>
+		<?php echo form_fieldset_close(); ?>
+	</p>
+	<p>
+	<input type="button" id="addContact" value="Add Another Contact Information">
+	</p>
+	<p>
+		<?php echo form_hidden('number_of_contacts', 1); ?>
 	</p>
 	<p>
 		<?php echo form_error('hometown'); ?>
