@@ -411,6 +411,12 @@ class modelsUserProxy extends \models\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getUpdatedAt();
     }
 
+    public function toArray()
+    {
+        $this->_load();
+        return parent::toArray();
+    }
+
 
     public function __sleep()
     {

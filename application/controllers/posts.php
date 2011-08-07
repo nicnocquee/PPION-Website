@@ -9,7 +9,11 @@ class Posts extends MY_Controller {
 	}
             
     function index() {
-		$this->load->view('posts');
+    	$query = $this->em->createQuery('SELECT p, t FROM models\Post p LEFT JOIN p.tags t ORDER BY p.created_at DESC');
+		//$query->setMaxResults(5);
+		$posts = $query->getResult();
+    	$data['posts'] = $posts;
+		$this->load->view('posts', $data);
 		
 	}
 	
@@ -28,7 +32,6 @@ class Posts extends MY_Controller {
 		foreach ($tags as $tag) {
 			$tag1 = $this->em->getRepository('models\\Tag')->findOneBy(array('name' => trim($tag)));
 			if (!($tag1)){
-				echo 'here';
 				$tag1 = new models\Tag;
 				$tag1->setName(trim($tag));
 				$this->em->persist($tag1);
@@ -48,7 +51,7 @@ class Posts extends MY_Controller {
 		$this->em->persist($post);
 		$this->em->flush();
 
-		$this->load->view('post_success');
+		$this->index();
 
 	}
 	
