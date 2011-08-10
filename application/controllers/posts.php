@@ -23,7 +23,7 @@ class Posts extends MY_Controller {
 		return;*/
 		
 		if ($this->_submit_validate() === FALSE) {
-			$this->new();
+			$this->add();
 			return;
 		}
 		

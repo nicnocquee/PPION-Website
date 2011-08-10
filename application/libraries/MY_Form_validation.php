@@ -41,4 +41,35 @@ class MY_Form_validation extends CI_Form_validation {
 			return false;
 		}
 	}
+	
+	function datetime($value, $params)
+	{
+		$CI =& get_instance();
+
+		$CI->form_validation->set_message('datetime',
+			'Format tanggal dan waktu tidak tepat.');
+		
+		$datetime = explode(" ", $value);
+		if (count($datetime) != 2) return false;
+		list($datepart, $timepart) = explode(" ", $value);
+		$exploded = explode("/", $datepart);
+		if (count($exploded) != 3) return false;
+		list($year, $month, $date) = explode("/", $datepart);
+		
+		if (is_numeric($year)&&is_numeric($month)&&is_numeric($date)&&$month>0&&$month<13&&$date>0&&$date<32&&$year>0) {
+			//return true;
+		} else {
+			return false;
+		}
+		
+		$exploded = explode(":", $timepart);
+		if (count($exploded) != 2) return false;
+		list($hour, $minute) = explode(":", $timepart);
+		
+		if (is_numeric($hour)&&is_numeric($minute)&&$hour>-1&&$hour<24&&$minute>-1&&$minute<60) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
