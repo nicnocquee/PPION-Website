@@ -5,12 +5,40 @@ class Login extends MY_Controller {
 		/* Inherit the CI_Controller construct because we're using a 
 		   custom controller with $this->em for Doctrine already set */
 		parent::__construct();
+		
+		$this->load->helper(array('form','url'));
+		$this->load->library('form_validation');
 	}
             
-    function index() {
-		//Just pass in a basic variable into an HTML view
-		$data['message'] = $this->db->get('users');
-		$this->load->view('home', $data);
-		
+    public function index() {
+		$this->load->view('login_form');
+	}
+
+	public function submit() {
+
+		if ($this->_submit_validate() === FALSE) {
+			$this->index();
+			return;
+		}
+
+		redirect('home');
+
+	}
+
+	private function _submit_validate() {
+		$this->form_validation->set_rules('email', 'E-mail',
+			'trim|required|callback_authenticate');
+
+		$this->form_validation->set_rules('password', 'Password',
+			'trim|required');
+
+		$this->form_validation->set_message('authenticate','Invalid login. Please try again.');
+
+		return $this->form_validation->run();
+	}
+	
+	public function authenticate() {
+		return models\Current_User::login(trim($this->input->post('email')), $this->input->post('password'));
+
 	}
 }

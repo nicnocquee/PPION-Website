@@ -169,6 +169,9 @@ $(document).ready(function(){
 
 	<?php echo form_close(); ?>
 </div>
+<p>
+	<?php echo anchor('login','Login'); ?>
+</p>
 
 </body>
 </html>

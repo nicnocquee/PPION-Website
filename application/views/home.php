@@ -1,46 +1,24 @@
-<!doctype html>  
-
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <title></title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="<?=site_url();?>application/views/css/style.css?v=2">
- 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Home</title>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css"
+		type="text/css" media="all">
 </head>
-
 <body>
 
-  <div id="container">
-    <header>
+<div>
 
-    </header>
-    
-    <div id="main">
-		
-		<?=$message?>
-		
-    </div>
-    
-    <footer>
+	<?php if(models\Current_User::user()): ?>
+		<h2>Hello <em><?php echo models\Current_User::user()->getName(); ?></em>.</h2>
+		<h2><?php echo anchor('logout','Logout'); ?></h2>
+	<?php else: ?>
+		<h2>New Users: <?php echo anchor('signup','Create an Account'); ?>.</h2>
+		<h2>Members: <?php echo anchor('login','Login'); ?>.</h2>
+	<?php endif; ?>
 
-    </footer>
-  </div> <!--! end of #container -->
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="<?=site_url();?>applications/views/js/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
-  
+</div>
 
 </body>
 </html>
