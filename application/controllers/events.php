@@ -13,8 +13,18 @@ class Events extends MY_Controller {
 		//$query->setMaxResults(5);
 		$posts = $query->getResult();
     	$data['events'] = $posts;
-		$this->load->view('events', $data);
-		
+		$this->load->view('events', $data);	
+	}
+	
+	function show($id) {
+		$event = $this->em->find('models\Event', $id);
+		if ($event) {
+			$data['event'] = $event;
+			$this->load->view('show_event', $data);
+		} else {
+			$data['message'] = 'Invalid event id.';
+			$this->load->view('error', $data);
+		}
 	}
 	
 	public function submit() {

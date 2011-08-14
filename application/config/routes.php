@@ -40,8 +40,11 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = '';
-$route['members/(:num)'] = "members/show/$1";
 
+// customized routes
+$route['members/(:num)'] = "members/show/$1";
+$route['events/(:num)'] = "events/show/$1";
+$route['posts/(:num)'] = "posts/show/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

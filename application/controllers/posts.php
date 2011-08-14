@@ -17,6 +17,17 @@ class Posts extends MY_Controller {
 		
 	}
 	
+	function show ($id) {
+		$post = $this->em->find('models\Post', $id);
+		if ($post) {
+			$data['post'] = $post;
+			$this->load->view('show_post', $data);
+		} else {
+			$data['message'] = 'Invalid post id.';
+			$this->load->view('error', $data);
+		}
+	}
+	
 	public function submit() {
 		/*$this->load->library('unit_test');
 		echo $this->unit->run($this->input->post('number_of_contacts'), 4);
