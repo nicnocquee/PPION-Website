@@ -26,9 +26,9 @@ function __construct()  {
 		$con_met = $controller.'_'.$method;
 		
 		// special uri for members controller
-		if ($controller == 'members' && is_numeric($method)) {
+		/*if ($controller == 'members' && is_numeric($method)) {
 			$con_met = $controller.'_id';
-		}
+		}*/
 		
 		$allPerms = $this->acl->getAllPerms('full');
 		
