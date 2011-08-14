@@ -28,15 +28,5 @@ class Members extends MY_Controller {
 			$this->load->view('error', $data);
 		}
 	}
-	
-	public function _remap($method)
-	{
-		if (in_array($method, $this->methodsArray))
-		{
-			$this->$method();
-		} else {
-			$this->show($method);
-		}
-	}
 }
 ?>

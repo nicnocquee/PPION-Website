@@ -8,6 +8,8 @@ class Error extends MY_Controller {
 	}
             
     public function index() {
-		$this->load->view('alert');
+    	$prev = $this->history->end();
+    	$data['history'] = $prev;
+		$this->load->view('alert', $data);
 	}
 }

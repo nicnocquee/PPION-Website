@@ -16,6 +16,17 @@ $hook['pre_system'] = array(
 	'filepath' => 'hooks',
 );
 
+$hook['post_controller'] = array(
+                                'function' => 'push_history',
+                                'filename' => 'history.php',
+                                'filepath' => 'hooks',
+                                );
+$hook['post_controller_constructor'] = array(
+                                'function' => 'setup_history',
+                                'filename' => 'history.php',
+                                'filepath' => 'hooks',
+                                ); 
+
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */
