@@ -9,26 +9,11 @@ public $em;
 function __construct()  {
 		parent::__construct();
 		
-		
-		//$user = models\Current_User::user();
-		/*$controller = $this->router->class;
-		$method = $this->router->fetch_method();
-		if ($controller == 'members' && $method == 'show') {
-			$message = '>> got the controller name: '.$controller.' and method: '.$method;
-			log_message('debug', $message);
-			redirect('/login');
-		}*/
-		
 		//$config = array('userID' => 12);
 		$this->load->library('acl');
 		$controller = $this->router->class;
 		$method = $this->router->fetch_method();
 		$con_met = $controller.'_'.$method;
-		
-		// special uri for members controller
-		/*if ($controller == 'members' && is_numeric($method)) {
-			$con_met = $controller.'_id';
-		}*/
 		
 		$allPerms = $this->acl->getAllPerms('full');
 		
