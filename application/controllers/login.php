@@ -20,8 +20,10 @@ class Login extends MY_Controller {
 			$this->index();
 			return;
 		}
-
-		redirect('home');
+		$next = $this->session->userdata('next');
+		$this->session->unset_userdata('next');
+		if ($next) redirect($next);
+		else redirect('home');
 
 	}
 
