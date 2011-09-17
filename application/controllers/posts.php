@@ -6,6 +6,7 @@ class Posts extends MY_Controller {
 		
 		$this->load->helper(array('form','url'));
         $this->load->library('form_validation');
+         $this->form_validation->set_error_delimiters('', '');
 	}
             
     function index() {
@@ -84,6 +85,8 @@ class Posts extends MY_Controller {
 	}
 	
 	public function add() {
-		$this->load->view('new_post_form');
+		//$this->load->view('new_post_form');
+		$this->template->title('Artikel Baru');
+		$this->template->build('new_post_form', array('show_title' => 1));
 	}
 }

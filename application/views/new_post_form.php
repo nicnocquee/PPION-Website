@@ -1,38 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>New Post</title>
-</head>
-
-<body>
-
-<div id="newpost">
-
-	<p class="heading">New Post</p>
+<div id="newpost_form" class="span16 columns">
 	<?php echo form_open('posts/submit', array('id' => 'newpost_form')); ?>
-	
-	<p>
-		<?php echo form_error('title'); ?>
+	<div class="<?php if(form_error('title')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="title">Judul: </label>
-		<?php echo form_input('title', set_value('title')); ?>
-	</p>
-	<p>
-		<?php echo form_error('content'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'title',
+						'value' => set_value('title'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('title'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('content')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="content">Isi: </label>
-		<?php echo form_textarea('content', set_value('content')); ?>
-	</p>
-	<p>
-		<?php echo form_error('tags'); ?>
-		<label for="tags">Tags: (comma separated) </label>
-		<?php echo form_input('tags', set_value('tags')); ?>
-	</p>
-	<p>
-		<?php echo form_submit('submit','Submit post'); ?>
-	</p>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'content',
+						'value' => set_value('content'),
+						'class' => 'xxlarge'
+					);
+		echo form_textarea($data); ?>
+		<span class="help-inline"><?php echo form_error('content'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('tags')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="tags">Tags (comma separated): </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'tags',
+						'value' => set_value('tags'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('tags'); ?></span>
+		</div>
+	</div>
+	<div class="actions">
+          <button type="submit" class="btn primary">Submit</button>&nbsp; <a href="/posts" class="btn">Cancel</a>
+    </div>
 
 	<?php echo form_close(); ?>
 </div>
-
-</body>
-</html>

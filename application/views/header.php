@@ -16,8 +16,8 @@
  	  <li class="dropdown" data-dropdown="dropdown" >
 		<a href="#" class="dropdown-toggle">Setting</a>
 		<ul class="dropdown-menu">
-		  <li><a href="#">Create New Post</a></li>
-		  <li><a href="#">Create New Event</a></li>
+		  <li><a href="/posts/add">Create New Post</a></li>
+		  <li><a href="/events/add">Create New Event</a></li>
 		  <li class="divider"></li>
 		  <li><a href="/logout">Logout</a></li>
 		</ul>

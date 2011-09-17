@@ -1,68 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>New Event</title>
-</head>
-
-<body>
-
 <div id="newpost">
 
-	<p class="heading">New Event</p>
 	<?php echo form_open('events/submit', array('id' => 'newevent_form')); ?>
-	
-	<p>
-		<?php echo form_error('name'); ?>
+	<div class="<?php if(form_error('name')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="name">Nama: </label>
-		<?php echo form_input('name', set_value('name')); ?>
-	</p>
-	<p>
-		<?php echo form_error('description'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'name',
+						'value' => set_value('name'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('name'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('description')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="description">Deskripsi: </label>
-		<?php echo form_textarea('description', set_value('description')); ?>
-	</p>
-	<p>
-		<?php echo form_error('place'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'description',
+						'value' => set_value('description'),
+						'class' => 'xxlarge'
+					);
+		echo form_textarea($data); ?>
+		<span class="help-inline"><?php echo form_error('description'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('place')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="place">Tempat: </label>
-		<?php echo form_input('place', set_value('place')); ?>
-	</p>
-	<p>
-		<?php echo form_error('deadline'); ?>
-		<label for="deadline">Tenggat waktu pendaftaran: (YYYY/MM/DD)</label>
-		<?php echo form_input('deadline', set_value('deadline')); ?>
-	</p>
-	<p>
-		<?php echo form_error('time-start'); ?>
-		<label for="time-start">Waktu mulai: (YYYY/MM/DD HH:MM)</label>
-		<?php echo form_input('time-start', set_value('time-start')); ?>
-	</p>
-	<p>
-		<?php echo form_error('time-end'); ?>
-		<label for="time-end">Waktu selesai: (YYYY/MM/DD HH:MM)</label>
-		<?php echo form_input('time-end', set_value('time-end')); ?>
-	</p>
-	<p>
-		<?php echo form_error('cost'); ?>
-		<label for="cost">Biaya: </label>
-		<?php echo form_input('cost', set_value('cost')); ?>
-	</p>
-	<p>
-		<?php echo form_error('limitation'); ?>
-		<label for="limitation">Batasan: </label>
-		<?php echo form_input('limitation', set_value('limitation')); ?>
-	</p>
-	<p>
-		<?php echo form_error('tags'); ?>
-		<label for="tags">Tags: (comma separated) </label>
-		<?php echo form_input('tags', set_value('tags')); ?>
-	</p>
-	<p>
-		<?php echo form_submit('submit','Submit post'); ?>
-	</p>
-
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'place',
+						'value' => set_value('place'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('place'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('deadline')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="deadline">Tenggat waktu pendaftaran (YYYY/MM/DD): </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'deadline',
+						'value' => set_value('deadline'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('deadline'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('time-start')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="time-start">Waktu mulai (YYYY/MM/DD HH:MM): </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'time-start',
+						'value' => set_value('time-start'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('time-start'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('time-end')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="time-end">Waktu selesai (YYYY/MM/DD HH:MM):</label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'time-end',
+						'value' => set_value('time-end'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('time-end'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('cost')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="cost">Biaya:</label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'cost',
+						'value' => set_value('cost'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('cost'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('limitation')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="limitation">Batasan:</label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'limitation',
+						'value' => set_value('limitation'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('limitation'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('tags')=="") echo "clearfix"; else echo "clearfix error" ?>">		
+		<label for="tags">Tags (comma separated):</label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'tags',
+						'value' => set_value('tags'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('tags'); ?></span>
+		</div>
+	</div>
+	<div class="actions">
+          <button type="submit" class="btn primary">Submit</button>&nbsp; <a href="/events" class="btn">Cancel</a>
+    </div>
 	<?php echo form_close(); ?>
 </div>
-
-</body>
-</html>
