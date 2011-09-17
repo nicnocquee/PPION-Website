@@ -10,8 +10,9 @@ class Signup extends MY_Controller {
 	}
             
     function index() {
-		$this->load->view('signup_form');
-		
+		//$this->load->view('signup_form');
+		$this->template->title('Anggota Baru');
+		$this->template->build('signup_form');
 	}
 	
 	public function submit() {

@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"  class="no-js">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Login</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-1.1.0.css"
-		type="text/css" media="all">
-	<script src="<?php echo base_url(); ?>js/modernizr.js"></script>
-</head>
-<body>
-<div class="container">
-
-	<div class="page-header">
-    <h1>Login</h1>
-  	</div>
-
-	<?php echo form_open('login/submit'); ?>
-	
+<?php echo form_open('login/submit'); ?>	
 	<div class="<?php if(form_error('email')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="email">E-mail: </label>
 		<div class="input">
@@ -42,13 +25,7 @@
 		<span class="help-inline"><?php echo form_error('password'); ?></span>
 		</div>
 	</div>
-
 	<div class="actions">
-          <button type="submit" class="btn primary">Login</button>&nbsp; <a href="/signup" class="btn">Bikin akun</a>
-    </div>
-
-	<?php echo form_close(); ?>
-
-</div>
-</body>
-</html>
+    	<button type="submit" class="btn primary enabled">Login</button>&nbsp; <a href="/signup" class="btn" type="button">Bikin akun</a>
+	</div>
+<?php echo form_close(); ?>

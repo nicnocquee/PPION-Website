@@ -13,7 +13,8 @@ class Events extends MY_Controller {
 		//$query->setMaxResults(5);
 		$posts = $query->getResult();
     	$data['events'] = $posts;
-		$this->load->view('events', $data);	
+		//$this->load->view('events', $data);	
+		$this->template->build('events', $data);
 	}
 	
 	function show($id) {

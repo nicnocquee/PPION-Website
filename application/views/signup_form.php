@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Signup Form</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-1.1.0.css"
-		type="text/css" media="all">
-</head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 <script>
 var current = 1;
 
@@ -27,13 +18,7 @@ $(document).ready(function(){
 	$('#addContact').click(addContact)
 });
 </script>
-<body>
-<div class="container">
 <div id="signup_form" class="span16 columns">
-
-	<div class="page-header">
-    <h1>Anggota Baru</h1>
-  	</div>
 	<?php echo form_open('signup/submit', array('id' => 'signup_form')); ?>
 	
 	<div class="<?php if(form_error('email')=="") echo "clearfix"; else echo "clearfix error" ?>">		
@@ -305,5 +290,3 @@ $(document).ready(function(){
 	<?php echo form_close(); ?>
 </div>
 </div>
-</body>
-</html>

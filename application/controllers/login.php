@@ -12,7 +12,9 @@ class Login extends MY_Controller {
 	}
             
     public function index() {
-		$this->load->view('login_form');
+		//$this->load->view('login_form');
+		$this->template->title('Login');
+		$this->template->build('login_form');
 	}
 
 	public function submit() {
