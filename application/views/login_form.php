@@ -3,56 +3,52 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Login</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css"
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-1.1.0.css"
 		type="text/css" media="all">
 	<script src="<?php echo base_url(); ?>js/modernizr.js"></script>
 </head>
 <body>
+<div class="container">
 
-<div id="signup_form">
-
-	<p class="heading">Login</p>
+	<div class="page-header">
+    <h1>Login</h1>
+  	</div>
 
 	<?php echo form_open('login/submit'); ?>
-
-	<?php echo validation_errors('<p class="error">','</p>'); ?>
-
-	<p>
+	
+	<div class="<?php if(form_error('email')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="email">E-mail: </label>
-		<input name="email" placeholder="required" id="email" type="text" value="<?php echo set_value('email'); ?>" required> <!--<?php echo form_input('email',set_value('email')); ?>-->
-	</p>
-	<p>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'email',
+						'value' => set_value('email'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('email'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('password')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="password">Password: </label>
-		<?php echo form_password('password'); ?>
-	</p>
-<!--	<p>
-		Date: <input type=date />
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'password',
+						'value' => set_value('password'),
+						'class' => 'xlarge'
+					);
+		echo form_password($data); ?>
+		<span class="help-inline"><?php echo form_error('password'); ?></span>
+		</div>
+	</div>
 
-<script>
-$(function() {
-    // Check if the browser supports the date input type
-    if (!Modernizr.inputtypes.date){
-        // Add the jQuery UI DatePicker to all
-        // input tags that have their type attributes
-        // set to 'date'
-        $('input[type=date]').datepicker({
-            // specify the same format as the spec
-            dateFormat: 'yy-mm-dd'
-        });
-    }
-});
-</script>
-	</p> -->
-	<p>
-		<?php echo form_submit('submit','Login'); ?>
-	</p>
+	<div class="actions">
+          <button type="submit" class="btn primary">Login</button>&nbsp; <a href="/signup" class="btn">Bikin akun</a>
+    </div>
 
 	<?php echo form_close(); ?>
-	<p>
-		<?php echo anchor('signup','Bikin akun'); ?>
-	</p>
 
 </div>
-
 </body>
 </html>

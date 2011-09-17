@@ -6,6 +6,7 @@ class Signup extends MY_Controller {
 		
 		$this->load->helper(array('form','url'));
         $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('', '');
 	}
             
     function index() {

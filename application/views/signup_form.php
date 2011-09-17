@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Signup Form</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css"
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-1.1.0.css"
 		type="text/css" media="all">
 </head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
@@ -28,152 +28,282 @@ $(document).ready(function(){
 });
 </script>
 <body>
+<div class="container">
+<div id="signup_form" class="span16 columns">
 
-<div id="signup_form">
-
-	<p class="heading">New User Signup</p>
+	<div class="page-header">
+    <h1>Anggota Baru</h1>
+  	</div>
 	<?php echo form_open('signup/submit', array('id' => 'signup_form')); ?>
 	
-	<p>
-		<?php echo form_error('email'); ?>
+	<div class="<?php if(form_error('email')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="email">E-mail: </label>
-		<?php echo form_input('email', set_value('email')); ?>
-	</p>
-	<p>
-		<?php echo form_error('password'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'email',
+						'value' => set_value('email'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('email'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('password')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="password">Password: </label>
-		<?php echo form_password('password', set_value('password')); ?>
-	</p>
-	<p>
-		<?php echo form_error('passconf'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'password',
+						'value' => set_value('password'),
+						'class' => 'xlarge'
+					);
+		echo form_password($data); ?>
+		<span class="help-inline"><?php echo form_error('password'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('passconf')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="passconf">Confirm Password: </label>
-		<?php echo form_password('passconf', set_value('passconf')); ?>
-	</p>
-	<p>
-		<?php echo form_error('name'); ?>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'passconf',
+						'value' => set_value('passconf'),
+						'class' => 'xlarge'
+					);
+		echo form_password($data); ?>
+		<span class="help-inline"><?php echo form_error('passconf'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('name')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="name">Nama: </label>
-		<?php echo form_input('name', set_value('name')); ?>
-	</p>
-	<p>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'name',
+						'value' => set_value('name'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('name'); ?></span>
+		</div>
+	</div>
+	
+	<div class="<?php if(form_error('hometown')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="hometown">Asal: </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'hometown',
+						'value' => set_value('hometown'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('hometown'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('affiliation')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="affiliation">Afiliasi: </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'affiliation',
+						'value' => set_value('affiliation'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('affiliation'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('arrival_date')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="arrival_date">Tahun tiba di Jepang: (YYYY/MM/DD) </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'arrival_date',
+						'value' => set_value('arrival_date'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('arrival_date'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('birthday')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="birthday">Tanggal lahir: (YYYY/MM/DD) </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'birthday',
+						'value' => set_value('birthday'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('birthday'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('marriage_status')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="marriage_status">Status: </label>
+		<div class="input">
+		<select>
+			<option>Menikah</option>
+			<option>Lajang</option>
+		</select>
+		<span class="help-inline"><?php echo form_error('marriage_status'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('gender')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="gender">Jenis kelamin: </label>
+		<div class="input">
+		<select>
+			<option>Wanita</option>
+			<option>Pria</option>
+		</select>
+		<span class="help-inline"><?php echo form_error('gender'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('religion')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="religion">Agama: </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'religion',
+						'value' => set_value('religion'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('religion'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('introduction')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="introduction">Bio: </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'introduction',
+						'value' => set_value('introduction'),
+						'class' => 'xxlarge'
+					);
+		echo form_textarea($data); ?>
+		<span class="help-inline"><?php echo form_error('introduction'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('left_the_country')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="left_the_country">Masih berada di Jepang: </label>
+		<div class="input">
+		<select>
+			<option>Ya</option>
+			<option>Tidak</option>
+		</select>
+		<span class="help-inline"><?php echo form_error('left_the_country'); ?></span>
+		</div>
+	</div>
+	<div class="<?php if(form_error('position')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="position">Jabatan di PPI ON:  </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'position',
+						'value' => set_value('position'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('position'); ?></span>
+		</div>
+	</div>
 		<?php echo form_fieldset('Contact Information', array('id'=>'contactField'));?>
-		<label for="contact">Address: </label><?php echo form_input('address1', set_value('address1')); ?><?php echo form_dropdown('addresstype1', array('Phone', 'Home address', 'Email', 'Facebook', 'YM', 'Twitter'), set_value('addresstype1')); ?>
-		<?php echo form_fieldset_close(); ?>
-	</p>
-	<p>
+		
+		<div class="clearfix">		
+		<label for="name">Address: </label>
+		<div class="input">
+		<div class="inline-inputs">
+		<?php 
+			$data = array(
+						'name' 	=> 'address1',
+						'value' => set_value('address1'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		
+			<select>
+				<option>Phone</option>
+				<option>Home Address</option>
+				<option>Facebook</option>
+				<option>YM</option>
+				<option>Twitter</option>
+			</select>
+		</div>
+	</div>
+	</div>
+	
+	<div class="input">
 	<input type="button" id="addContact" value="Add Another Contact Information">
-	</p>
+	</div>
+	<?php echo form_fieldset_close(); ?>
 	<p>
 		<?php echo form_hidden('number_of_contacts', 1); ?>
 	</p>
-	<p>
-		<?php echo form_error('hometown'); ?>
-		<label for="hometown">Asal: </label>
-		<?php echo form_input('hometown' , set_value('hometown')); ?>
-	</p>
-	<p>
-		<?php echo form_error('affiliation'); ?>
-		<label for="affiliation">Afiliasi (universitas/kantor saat ini): </label>
-		<?php echo form_input('affiliation', set_value('affiliation')); ?>
-	</p>
-	<p>
-		<?php echo form_error('arrival_date'); ?>
-		<label for="arrival_date">Tahun tiba di Jepang: (YYYY/MM/DD) </label>
-		<?php echo form_input('arrival_date', set_value('arrival_date')); ?>
-	</p>
-	<p>
-		<?php echo form_error('birthday'); ?>
-		<label for="birthday">Tanggal lahir: (YYYY/MM/DD) </label>
-		<?php echo form_input('birthday' , set_value('birthday')); ?>
-	</p>
-	<p>
-		<?php echo form_error('marriage_status'); ?>
-		<label for="marriage_status">Status: </label>
-		<?php echo form_dropdown('marriage_status', array('Menikah', 'Lajang'), set_value('marriage_status')); ?>
-	</p>
-	<p>
-		<?php echo form_error('gender'); ?>
-		<label for="gender">Jenis kelamin: </label>
-		<?php echo form_dropdown('gender', array('Pria', 'Wanita') , set_value('gender')); ?>
-	</p>
-	<p>
-		<?php echo form_error('religion'); ?>
-		<label for="religion">Agama: </label>
-		<?php echo form_input('religion', set_value('religion')); ?>
-	</p>
-	<p>
-		<?php echo form_error('introduction'); ?>
-		<label for="introduction">Bio: </label>
-		<?php echo form_textarea('introduction', set_value('introduction')); ?>
-	</p>
-	<p>
-		<?php echo form_error('undergrad_university'); ?>
-		<label for="undergrad_university">Universitas S1: </label>
-		<?php echo form_input('undergrad_university', set_value('undergrad_university')); ?>
-	</p>
-	<p>
-		<?php echo form_error('undergrad_department'); ?>
-		<label for="undergrad_department">Jurusan S1: </label>
-		<?php echo form_input('undergrad_department', set_value('undergrad_department')); ?>
-	</p>
-	<p>
-		<?php echo form_error('undergrad_graduation_year'); ?>
-		<label for="undergrad_graduation_year">Tahun lulus S1: </label>
-		<?php echo form_input('undergrad_graduation_year', set_value('undergrad_graduation_year')); ?>
-	</p>
-	<p>
-		<?php echo form_error('master_university'); ?>
-		<label for="master_university">Universitas S2: </label>
-		<?php echo form_input('master_university', set_value('master_university')); ?>
-	</p>
-	<p>
-		<?php echo form_error('master_department'); ?>
-		<label for="master_department">Jurusan S2: </label>
-		<?php echo form_input('master_department', set_value('master_department')); ?>
-	</p>
-	<p>
-		<?php echo form_error('master_graduation_year'); ?>
-		<label for="master_graduation_year">Tahun lulus S2: </label>
-		<?php echo form_input('master_graduation_year', set_value('master_graduation_year')); ?>
-	</p>
-	<p>
-		<?php echo form_error('phd_university'); ?>
-		<label for="phd_university">Universitas S3: </label>
-		<?php echo form_input('phd_university', set_value('phd_university')); ?>
-	</p>
-	<p>
-		<?php echo form_error('phd_department'); ?>
-		<label for="phd_department">Jurusan S3: </label>
-		<?php echo form_input('phd_department', set_value('phd_department')); ?>
-	</p>
-	<p>
-		<?php echo form_error('phd_graduation_year'); ?>
-		<label for="phd_graduation_year">Tahun lulus S3: </label>
-		<?php echo form_input('phd_graduation_year', set_value('phd_graduation_year')); ?>
-	</p>
-	<p>
-		<?php echo form_error('informal_skill'); ?>
-		<label for="informal_skill">Keahlian informal: </label>
-		<?php echo form_input('informal_skill', set_value('informal_skill')); ?>
-	</p>
-	<p>
-		<?php echo form_error('left_the_country'); ?>
-		<label for="left_the_country">Masih berada di Jepang: </label>
-		<?php echo form_dropdown('left_the_country', array('Ya', 'Tidak'), set_value('left_the_country')); ?>
-	</p>
-	<p>
-		<?php echo form_error('position'); ?>
-		<label for="position">Jabatan di PPI ON: </label>
-		<?php echo form_input('position', set_value('position')); ?>
-	</p>
-	<p>
-		<?php echo form_submit('submit','Bikin akun'); ?>
-	</p>
+	
+	<?php
+		echo form_fieldset('Education', array('id'=>'education'));
+		$educations = array(
+			array(
+				'undergrad_university' => 'Universitas S1:',
+				'undergrad_department' => 'Jurusan S1:',
+				'undergrad_graduation_year' => 'Tahun lulus S1:'
+			),
+			array(
+				'master_university' => 'Universitas S2:',
+				'master_department' => 'Jurusan S2:',
+				'master_graduation_year' => 'Tahun lulus S2:'
+			),
+			array(
+				'phd_university' => 'Universitas S3:',
+				'phd_department' => 'Jurusan S3:',
+				'phd_graduation_year' => 'Tahun lulus S3:'
+			),
+		);
+		
+		foreach ($educations as $education) {?>
+			<fieldset>
+			<?php foreach ($education as $key => $value) {?>
+				<div class="<?php if(form_error($key)=="") echo "clearfix"; else echo "clearfix error" ?>">
+					<label for="<?php $key;?>"><?php echo $value; ?> </label>
+					<div class="input">
+					<?php 
+						$data = array(
+									'name' => $key,
+									'value' => set_value($key),
+									'class' => 'xlarge'
+								);
+					echo form_input($data); ?>
+					<span class="help-inline"><?php echo form_error($key); ?></span>
+					</div>
+				</div>
+			<?php } ?>
+			</fieldset>
+		<?php }
+	?>
+	<?php echo form_fieldset_close(); ?>
+	
+	<div class="<?php if(form_error('informal_skill')=="") echo "clearfix"; else echo "clearfix error" ?>">
+		<label for="informal_skill">Keahlian informal:  </label>
+		<div class="input">
+		<?php 
+			$data = array(
+						'name' => 'informal_skill',
+						'value' => set_value('informal_skill'),
+						'class' => 'xlarge'
+					);
+		echo form_input($data); ?>
+		<span class="help-inline"><?php echo form_error('informal_skill'); ?></span>
+		</div>
+	</div>
+	<div class="actions">
+          <button type="submit" class="btn primary">Bikin akun</button>&nbsp; <a href="/login" class="btn">Login</a>
+    </div>
 
 	<?php echo form_close(); ?>
 </div>
-<p>
-	<?php echo anchor('login','Login'); ?>
-</p>
-
+</div>
 </body>
 </html>

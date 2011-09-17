@@ -16,7 +16,7 @@ class Post
 	 */
 	private $id;
         
-        /**
+    /**
 	 * @ManyToOne(targetEntity="User", inversedBy="posts")
 	 * @JoinColumns({
 		@JoinColumn(name="user", referencedColumnName="id")
