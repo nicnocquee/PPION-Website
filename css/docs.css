@@ -322,3 +322,50 @@ pre.prettyprint {
   margin-right: 10px;
   margin-left: 0;
 }
+
+.commentBox {
+background-color: #f5f5f5;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 0px;
+}
+
+.userName {
+  color: #9f3838;
+}
+
+.commentDate {
+  color: #b2b2b2;
+  padding-top: 5px;
+  margin-bottom: -5px;
+}
+
+.sidePost {
+  float: right;
+  margin-right: 0px;
+}
+
+.sidePostName {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.commentInput {
+  padding-left: 5px;
+}
+
+.commentButton {
+  margin-left: 7px;
+}
+
+.commentInputBox {
+  padding-bottom: 3px;
+}
+
+.postTitleDate {
+  padding-top: 3px;
+  color: #bfbfbf;
+  font-style: italic;
+  padding-bottom: 3px;
+}

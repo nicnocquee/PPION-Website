@@ -23,7 +23,12 @@ class Posts extends MY_Controller {
 		$post = $this->em->find('models\Post', $id);
 		if ($post) {
 			$data['post'] = $post;
-			$this->load->view('show_post', $data);
+			$comments = $post->getComments();
+			if ($comments && count($comments)>0) $data['comments'] = $comments;
+			//$this->load->view('show_post', $data);
+			$this->template->title($post->getTitle());
+			$data['show_title'] = 0;
+			$this->template->build('show_post', $data);
 		} else {
 			$data['message'] = 'Invalid post id.';
 			$this->load->view('error', $data);

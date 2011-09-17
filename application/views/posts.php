@@ -3,7 +3,8 @@
 	<?php foreach ($posts as $post) { ?>
 	<section id="post">
 		<div class="page-header">
-		<h2><?php echo $post->getTitle(); ?>&nbsp;&nbsp;<small>by <?php echo $post->getUser()->getName(); ?> on <?php echo $post->getCreatedAt()->format('l F j, Y, g:i a'); ?></small></h2>
+		<h2><a href="/posts/<?php echo $post->getId();?>"><?php echo $post->getTitle(); ?></a></h2>
+		<div class="postTitleDate"><small class="postTitleDate">by <a href="/members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><em><?php echo $post->getUser()->getName(); ?></em></strong></a> on <?php echo $post->getCreatedAt()->format('l F j, Y, g:i a'); ?></small></div>
 		</div>
 		<div id='content'>
 			<?php echo nl2br($post->getContent()); ?>
