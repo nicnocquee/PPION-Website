@@ -315,3 +315,10 @@ img.large-bird {
 pre.prettyprint {
   overflow: hidden;
 }
+
+.post-footer {
+  float: left;
+  padding-top: 20px;
+  margin-right: 10px;
+  margin-left: 0;
+}

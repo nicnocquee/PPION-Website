@@ -15,7 +15,9 @@ class Members extends MY_Controller {
 		$query->setMaxResults(5);
 		$users = $query->getResult();
 		$data['members'] = $users;
-		$this->load->view('members', $data);
+		//$this->load->view('members', $data);
+		$this->template->title('Members');
+		$this->template->build('members', $data);
 	}
 	
 	function show($id){

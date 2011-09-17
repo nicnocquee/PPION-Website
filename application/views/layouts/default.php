@@ -32,9 +32,9 @@
 <?php include dirname(__FILE__).'/../header.php'; ?>
 <section>
 		<div class="container">
-		<div class="page-header">
+		<!-- <div class="page-header">
 			<h1><?php echo $template['title']; ?></h1>
-		</div>
+		</div> -->
 		<?php echo $template['body']; ?>
 		</div>
 </section>

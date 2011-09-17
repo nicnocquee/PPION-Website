@@ -13,8 +13,9 @@ class Posts extends MY_Controller {
 		//$query->setMaxResults(5);
 		$posts = $query->getResult();
     	$data['posts'] = $posts;
-		$this->load->view('posts', $data);
-		
+		//$this->load->view('posts', $data);
+		$this->template->title('Articles');
+		$this->template->build('posts', $data);
 	}
 	
 	function show ($id) {

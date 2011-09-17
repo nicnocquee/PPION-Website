@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Members</title>
-</head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-
-<body>
-
 <div id="members">
+	
 
-	<p class="heading">Members</p>
-	<table border=1>
-	<tr>
+<table class="zebra-striped" id="sortTableExample">
+<thead>
+<tr>
 		<th>Name</th>
 		<th>Email</th>
 		<th>Hometown</th>
@@ -20,6 +11,8 @@
 		<th>Religion</th>
 		<th>Contact information</th>
 	</tr>
+</thead>
+<tbody>
 	<?php foreach ($members as $member) { ?>
 	<tr>
 		<td><?php echo $member->getName();?></td>
@@ -34,8 +27,6 @@
 		</td>
 	</tr>
 	<?php } ?>
-	</table>
+</tbody>
+</table>
 </div>
-
-</body>
-</html>

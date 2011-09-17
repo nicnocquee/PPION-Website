@@ -3,10 +3,10 @@
 	<div class="container">
 	  <h3><a href="/home">PPION</a></h3>
 	  <ul>
-		<li class="active"><a href="/home">Home</a></li>
-		<li><a href="/posts">Posts</a></li>
-		<li><a href="/events">Events</a></li>
-		<li><a href="/members">Members</a></li>
+		<li <?php if ($template['title'] == 'Home') echo 'class="active"'; ?>><a href="/home">Home</a></li>
+		<li <?php if ($template['title'] == 'Articles') echo 'class="active"'; ?>><a href="/posts">Articles</a></li>
+		<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="/events">Events</a></li>
+		<li <?php if ($template['title'] == 'Members') echo 'class="active"'; ?>><a href="/members">Members</a></li>
 	  </ul>
 	  
 	<ul class="nav secondary-nav">
