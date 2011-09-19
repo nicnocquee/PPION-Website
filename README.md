@@ -5,11 +5,11 @@
 
 ## Database
 
-1. Create a new database in MySQL with name: `ppion`. Can be anything, but make sure to assign the database name in `application/config/database.php`.
+1. Create a new database in MySQL with name: `ppion`. Can be anything, doesn't need to be `ppion`, but make sure to assign the database name in `application/config/database.php` (the database name you created in the mysql should be the same as the database name you define in database.php file).
 
 2. Open Terminal (Unix/Mac).
 
-3. Go to `application` directory.
+3. Go to `application` directory in the root folder of this app.
 
 4. Run this: `php doctrine.php orm:schema-tool:create`
 
@@ -46,6 +46,8 @@
 
         127.0.0.1       localhost ppion.local
     
-6.  Restart Apache.
+6.  Flush the DNS by running this: `dscacheutil -fluscache`
+
+7.  Restart Apache.
 
 7.  Open browser then go to `http://ppion.local:8888/`
