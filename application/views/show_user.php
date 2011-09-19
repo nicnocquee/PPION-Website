@@ -1,39 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>User</title>
-</head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-
-<body>
-
-<div id="user">
-
-	<p class="heading">User</p>
-	<div id="name">
-		Name: <?php echo $member->getName(); ?>
-	</div>
-	<div id="email">
-		Email: <?php echo $member->getEmail();?>
-	</div>
-	<div id="hometown">
-		Asal: <?php echo $member->getHometown();?>
-	</div>
-	<div id="gender">
-		Jenis kelamin: <?php echo $member->getGender();?>
-	</div>
-	<div id="religion">
-		Agama: <?php echo $member->getReligion();?>
-	</div>
-	<div id="contacts">
-		Kontak: <?php foreach ($member->getContacts() as $contact) { ?>
-			<div id="contact">
-				<?php echo $contact->getAddress().'('.$contact->getType().')<br/>';?>
+<div id="user" class="container">
+	<div class="row">
+		<div class="span6 columns">
+			<div class="media-grid">
+				<a href="#">
+				  <img class="thumbnail" src="http://placehold.it/330x230" alt="">
+				</a>
 			</div>
-	<?php } ?>
+		</div>
+		<div class="span10 columns">
+			<div class="page-header"><h1><?php echo $member->getName(); ?></h1></div>
+			<div id="email">
+				<?php echo $member->getEmail();?>
+			</div>
+			<div id="hometown">
+				<?php echo $member->getHometown();?>
+			</div>
+			<?php echo $member->getAffiliation(); ?>
+			<?php 
+				if (count($member->getContacts()) > 0) {
+			?>
+			<div id="contacts">
+				Kontak: <?php foreach ($member->getContacts() as $contact) { ?>
+					<div id="contact">
+						<?php echo '    - '.$contact->getAddress().' ('.$contact->getType().')<br/>';?>
+					</div>
+			<?php }} ?>
+			
+			</div>
+		</div>
 	</div>
 </div>
-
-</body>
-</html>

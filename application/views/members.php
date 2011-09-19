@@ -4,27 +4,27 @@
 <table class="zebra-striped" id="sortTableExample">
 <thead>
 <tr>
-		<th>Name</th>
+		<th>Nama</th>
 		<th>Email</th>
-		<th>Hometown</th>
-		<th>Gender</th>
-		<th>Religion</th>
-		<th>Contact information</th>
+		<th>Asal</th>
+		<th>Afiliasi</th>
+		<th>Kontak</th>
+		<th>Tiba di Jepang</th>
 	</tr>
 </thead>
 <tbody>
 	<?php foreach ($members as $member) { ?>
 	<tr>
-		<td><?php echo $member->getName();?></td>
+		<td><a href="/members/<?php echo $member->getId();?>" class="userName"><strong><?php echo $member->getName(); ?></strong></a></td>
 		<td><?php echo $member->getEmail();?></td>
 		<td><?php echo $member->getHometown();?></td>
-		<td><?php echo $member->getGender();?></td>
-		<td><?php echo $member->getReligion();?></td>
+		<td><?php echo $member->getAffiliation();?></td>
 		<td>
 			<?php foreach ($member->getContacts() as $contact) { ?>
-				<?php echo $contact->getAddress().'('.$contact->getType().')<br/>';?>
+				<?php echo $contact->getAddress().' ('.$contact->getType().')<br/>';?>
 			<?php } ?>
 		</td>
+		<td><?php echo $member->getArrivalDate()->format('F Y'); ?></td>
 	</tr>
 	<?php } ?>
 </tbody>

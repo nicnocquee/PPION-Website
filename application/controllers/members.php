@@ -24,7 +24,10 @@ class Members extends MY_Controller {
 		$user = $this->em->find('models\User', $id);
 		if ($user) {
 			$data['member'] = $user;
-			$this->load->view('show_user', $data);
+			//$this->load->view('show_user', $data);
+			$data['show_title'] = 0;
+			$this->template->title($user->getName());
+			$this->template->build('show_user', $data);
 		} else {
 			$data['message'] = 'Invalid user id.';
 			$this->load->view('error', $data);

@@ -45,7 +45,16 @@
 				</div>
 			</div>
 			<?php } ?>
-			<div class="row commentBox commentInputBox">
+			
+		<?php } else {
+			?>
+			<div class="alert-message warning">
+			  Belum ada komen.
+			</div>
+			<?php
+		}
+	?>
+	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
 				<form action="posts/comment">
 				<?php 
@@ -61,14 +70,6 @@
 			</div>
 				<?php echo form_close(); ?>
 			</div>
-		<?php } else {
-			?>
-			<div class="alert-message warning">
-			  Belum ada komen.
-			</div>
-			<?php
-		}
-	?>
 	</div>
 	</div>
 	</section>

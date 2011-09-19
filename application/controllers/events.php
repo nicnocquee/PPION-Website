@@ -22,7 +22,10 @@ class Events extends MY_Controller {
 		$event = $this->em->find('models\Event', $id);
 		if ($event) {
 			$data['event'] = $event;
-			$this->load->view('show_event', $data);
+			//$this->load->view('show_event', $data);
+			$this->template->title($event->getName());
+			$data['show_title'] = 0;
+			$this->template->build('show_event', $data);
 		} else {
 			$data['message'] = 'Invalid event id.';
 			$this->load->view('error', $data);
