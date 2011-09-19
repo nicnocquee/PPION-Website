@@ -15,7 +15,9 @@
 
 5. If no error, the tables should be created in the database.
 
-6. Populate the database with some dummy data, for example using phpmyadmin.
+6. Dump/import the file `sqls/sql-acl.sql` to the database.
+
+7. Populate the database with some dummy data (`sqls/ppion-dummy.sql`), for example using phpmyadmin.
 
 ## Setting up VirtualHost in MAMP (Mac)
 
