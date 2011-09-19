@@ -54,17 +54,7 @@ INSERT INTO `eventmembers` VALUES(2, 1, 2, 'transportation', 'taking care of car
 
 
 
---
--- Dumping data for table `events_tags`
---
 
-INSERT INTO `events_tags` VALUES(1, 1);
-INSERT INTO `events_tags` VALUES(1, 2);
-INSERT INTO `events_tags` VALUES(1, 3);
-INSERT INTO `events_tags` VALUES(3, 4);
-INSERT INTO `events_tags` VALUES(3, 5);
-INSERT INTO `events_tags` VALUES(3, 6);
-INSERT INTO `events_tags` VALUES(3, 7);
 
 -- --------------------------------------------------------
 
@@ -79,6 +69,18 @@ INSERT INTO `eventtags` VALUES(4, 'ngabuburit', '2011-08-10 23:11:20', NULL);
 INSERT INTO `eventtags` VALUES(5, 'puasa', '2011-08-10 23:11:20', NULL);
 INSERT INTO `eventtags` VALUES(6, 'ramadhan', '2011-08-10 23:11:20', NULL);
 INSERT INTO `eventtags` VALUES(7, 'japan', '2011-08-10 23:11:20', NULL);
+
+--
+-- Dumping data for table `events_tags`
+--
+
+INSERT INTO `events_tags` VALUES(1, 1);
+INSERT INTO `events_tags` VALUES(1, 2);
+INSERT INTO `events_tags` VALUES(1, 3);
+INSERT INTO `events_tags` VALUES(3, 4);
+INSERT INTO `events_tags` VALUES(3, 5);
+INSERT INTO `events_tags` VALUES(3, 6);
+INSERT INTO `events_tags` VALUES(3, 7);
 
 -- --------------------------------------------------------
 
