@@ -23,19 +23,19 @@
 
 2.  Add the following at the end of the file:
 
-    <VirtualHost *>
-        ServerName ppion.local
-        DocumentRoot /path/to/root/folder/of/this/app
+        <VirtualHost *>
+            ServerName ppion.local
+            DocumentRoot /path/to/root/folder/of/this/app
 
-        SetEnv APPLICATION_ENV "development"
+            SetEnv APPLICATION_ENV "development"
 
-        <Directory /path/to/root/folder/of/this/app>
+            <Directory /path/to/root/folder/of/this/app>
                 DirectoryIndex index.php
                 AllowOverride All
                 Order allow,deny
                 Allow from all
-        </Directory>
-    </VirtualHost>
+            </Directory>
+        </VirtualHost>
 
 3.  Save it.
 
@@ -43,7 +43,7 @@
 
 5.  Add `ppion.local` after the localhost. For example,
 
-    127.0.0.1       localhost ppion.local
+        127.0.0.1       localhost ppion.local
     
 6.  Restart Apache.
 
