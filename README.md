@@ -23,6 +23,7 @@
 
 2.  Add the following at the end of the file:
 
+        NameVirtualHost *
         <VirtualHost *>
             ServerName ppion.local
             DocumentRoot /path/to/root/folder/of/this/app
