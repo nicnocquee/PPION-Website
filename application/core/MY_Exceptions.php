@@ -488,6 +488,10 @@ class MY_Exceptions extends CI_Exceptions
 			}
 		}
 		unset($trace);
+		
+		if (is_array($message)){
+		   $message = implode('<br/>',$message);
+		}
 
 		self::exception_handler(new ErrorException($message, E_ERROR, 0, $file, $line));
 		return;
