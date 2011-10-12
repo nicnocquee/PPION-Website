@@ -1,0 +1,3 @@
+[submodule "application/libraries/DoctrineExtensions"]
+	path = application/libraries/DoctrineExtensions
+	url = https://github.com/beberlei/DoctrineExtensions.git
