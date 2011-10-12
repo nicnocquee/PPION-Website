@@ -1,5 +1,7 @@
 <?php
 
+use DoctrineExtensions\Paginate\Paginate;
+
 class Posts extends MY_Controller {
 	function  __construct()  {
 		parent::__construct();
@@ -10,11 +12,44 @@ class Posts extends MY_Controller {
 	}
             
     function index() {
+    	/*$query = $this->em->createQuery('SELECT COUNT(p.id) from models\Post p');
+    	$numArticles = $query->getSingleScalarResult();
+    	
+    	$this->load->library('pagination');
+		$config['base_url'] = base_url('posts');
+		$config['total_rows'] = $numArticles;
+		$config['per_page'] = '2';
+		$config['full_tag_open'] = '<div class="pagination">';
+		$config['full_tag_close'] = '</div>';
+		
+		$this->pagination->initialize($config);*/
+    	   
     	$query = $this->em->createQuery('SELECT p, t FROM models\Post p LEFT JOIN p.tags t ORDER BY p.created_at DESC');
-		//$query->setMaxResults(5);
-		$posts = $query->getResult();
+		$count = Paginate::getTotalQueryResults($query);
+		
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('posts/index');
+		$config['total_rows'] = $count;
+		$config['per_page'] = '5';
+		$config['full_tag_open'] = '<div class="pagination"><ul>';
+		$config['full_tag_close'] = '</ul></div>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';		
+		$config['num_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';		
+		$config['next_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		
+		$this->pagination->initialize($config);
+		
+		$offset = $this->uri->segment(3);
+		if (!$offset) $offset = 0;
+		$paginateQuery = Paginate::getPaginateQuery($query, $offset, 5); // Step 2 and 3
+		$posts = $paginateQuery->getResult();
     	$data['posts'] = $posts;
-		//$this->load->view('posts', $data);
+    	$data['pagination'] = $this->pagination->create_links();
 		$this->template->title('Articles');
 		$this->template->build('posts', $data);
 	}

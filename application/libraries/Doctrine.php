@@ -24,6 +24,10 @@ class Doctrine {
     $entitiesClassLoader->register();
     $proxiesClassLoader = new ClassLoader('Proxies', APPPATH.'models/proxies');
     $proxiesClassLoader->register();
+    
+    //extension
+    $extensionClassLoader = new ClassLoader('DoctrineExtensions', APPPATH.'libraries/DoctrineExtensions/lib');
+    $extensionClassLoader->register();
  
     // Set up caches
     $config = new Configuration;
