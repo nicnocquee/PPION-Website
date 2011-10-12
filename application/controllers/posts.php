@@ -33,9 +33,18 @@ class Posts extends MY_Controller {
 			$data['post'] = $post;
 			$comments = $post->getComments();
 			if ($comments && count($comments)>0) $data['comments'] = $comments;
-			//$this->load->view('show_post', $data);
 			$this->template->title($post->getTitle());
 			$data['show_title'] = 0;
+			
+			$user = models\Current_User::user();
+			
+			$favorite = $this->em->getRepository('models\\Favorite')->findOneBy(array('user' => $user->getId(), 'post' => $id));
+			
+			if ($favorite) {
+				$data['liked'] = 1;
+			} else {
+				$data['liked'] = 0;
+			}
 			$this->template->build('show_post', $data);
 		} else {
 			$data['message'] = 'Invalid post id.';

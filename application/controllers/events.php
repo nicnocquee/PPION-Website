@@ -25,13 +25,6 @@ class Events extends MY_Controller {
     	$data['pagination'] = $this->pagination->create_links();
     	$this->template->title('Events');
     	$this->template->build('events', $data);
-    	
-    	/*$query = $this->em->createQuery('SELECT p, t, u FROM models\Event p LEFT JOIN p.tags t LEFT JOIN p.members u ORDER BY p.created_at DESC');
-		//$query->setMaxResults(5);
-		$posts = $query->getResult();
-    	$data['events'] = $posts;
-		//$this->load->view('events', $data);	
-		$this->template->build('events', $data);*/
 	}
 	
 	function show($id) {

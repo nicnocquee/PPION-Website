@@ -20,6 +20,8 @@
     <script src="<?php echo base_url(); ?>js/google-code-prettify/prettify.js"></script>
     <script src="<?php echo base_url(); ?>js/application.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap-dropdown.js"></script>
+    <script src="<?php echo base_url(); ?>js/bootstrap-alerts.js"></script>
+    <script src="<?php echo base_url(); ?>js/jquery.cookie.js"></script>
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/favicon.ico">

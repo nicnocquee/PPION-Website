@@ -147,6 +147,10 @@ class User
 	*/
 	private $posts;
 	/**
+	* @OneToMany(targetEntity="Favorite", mappedBy="user")
+	*/
+	private $favorites;
+	/**
 	 * @Column(type="datetime", nullable=false)
 	 */
 	private $created_at;
@@ -160,6 +164,7 @@ class User
 	{
 		$this->families = new ArrayCollection();
 		$this->contacts = new ArrayCollection();
+		$this->favorites = new ArrayCollection();
 		$this->created_at = new \DateTime("now");
 	}
     
@@ -223,6 +228,8 @@ class User
     public function getPosts() {  return $this->posts; }
     public function setEvents($events) { $this->events = $events; }
     public function getEvents() {  return $this->events; }
+    public function setFavorites($favorites) { $this->favorites = $favorites; }
+    public function getFavorites() {  return $this->favorites; }
     public function setCreatedAt($created_at) { $this->created_at = $created_at; }
     public function getCreatedAt() {  return $this->created_at; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; }

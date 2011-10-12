@@ -387,6 +387,18 @@ class modelsUserProxy extends \models\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getEvents();
     }
 
+    public function setFavorites($favorites)
+    {
+        $this->_load();
+        return parent::setFavorites($favorites);
+    }
+
+    public function getFavorites()
+    {
+        $this->_load();
+        return parent::getFavorites();
+    }
+
     public function setCreatedAt($created_at)
     {
         $this->_load();
@@ -420,6 +432,6 @@ class modelsUserProxy extends \models\User implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'email', 'password', 'name', 'hometown', 'affiliation', 'arrival_date', 'birthday', 'marriage_status', 'gender', 'religion', 'introduction', 'undergrad_university', 'undergrad_department', 'undergrad_graduation_year', 'master_university', 'master_department', 'master_graduation_year', 'phd_university', 'phd_department', 'phd_graduation_year', 'informal_skill', 'left_the_country', 'position', 'families', 'contacts', 'expertises', 'photos', 'events', 'posts', 'created_at', 'updated_at');
+        return array('__isInitialized__', 'id', 'email', 'password', 'name', 'hometown', 'affiliation', 'arrival_date', 'birthday', 'marriage_status', 'gender', 'religion', 'introduction', 'undergrad_university', 'undergrad_department', 'undergrad_graduation_year', 'master_university', 'master_department', 'master_graduation_year', 'phd_university', 'phd_department', 'phd_graduation_year', 'informal_skill', 'left_the_country', 'position', 'families', 'contacts', 'expertises', 'photos', 'events', 'posts', 'favorites', 'created_at', 'updated_at');
     }
 }
