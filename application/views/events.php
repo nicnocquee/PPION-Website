@@ -33,3 +33,6 @@
 	</section>
 	<?php } ?>
 </div>
+<section id="pagination">
+	<?php echo $pagination; ?>
+</section>
