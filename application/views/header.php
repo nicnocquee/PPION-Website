@@ -14,7 +14,16 @@
 		<input type="text" placeholder="Search" />
 	  </form>
  	  <li class="dropdown" data-dropdown="dropdown" >
-		<a href="#" class="dropdown-toggle">Setting</a>
+		<a href="#" class="dropdown-toggle">
+		<?php  
+			$user = models\Current_User::user();
+			if (!$user) {
+				echo 'Setting';
+			} else {
+				echo $user->getName();
+			}
+		?>
+		</a>
 		<ul class="dropdown-menu">
 		  <li><a href="/posts/add">Create New Post</a></li>
 		  <li><a href="/events/add">Create New Event</a></li>

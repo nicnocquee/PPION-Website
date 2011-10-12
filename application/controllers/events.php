@@ -1,5 +1,7 @@
 <?php
 
+use DoctrineExtensions\Paginate\Paginate;
+
 class Events extends MY_Controller {
 	function  __construct()  {
 		parent::__construct();
@@ -11,11 +13,18 @@ class Events extends MY_Controller {
             
     function index() {
     	$query = $this->em->createQuery('SELECT p, t, u FROM models\Event p LEFT JOIN p.tags t LEFT JOIN p.members u ORDER BY p.created_at DESC');
-		//$query->setMaxResults(5);
-		$posts = $query->getResult();
+    	$count = Paginate::getTotalQueryResults($query);
+    	$per_page = 5;
+    	$this->load->library('pagination', array('total' => $count, 'base_url' => 'events/index', 'per_page' => $per_page));
+    	
+    	$offset = $this->uri->segment(3);
+    	if (!$offset) $offset = 0;
+    	$paginateQuery = Paginate::getPaginateQuery($query, $offset, $per_page);
+    	$posts = $paginateQuery->getResult();
     	$data['events'] = $posts;
-		//$this->load->view('events', $data);	
-		$this->template->build('events', $data);
+    	$data['pagination'] = $this->pagination->create_links();
+    	$this->template->title('Events');
+    	$this->template->build('events', $data);
 	}
 	
 	function show($id) {

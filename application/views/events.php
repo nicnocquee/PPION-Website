@@ -3,7 +3,7 @@
 	<?php foreach ($events as $event) { ?>
 	<section>
 	<div class="page-header">
-				<h2><?php echo '<a href="/events/'.$event->getId().'">'.$event->getName(); ?></a></h2><em> by <a href="/members/<?php echo $event->getUser()->getId();?>" class="userName"><strong><em><?php echo $event->getUser()->getName(); ?></em></strong></a> on <?php echo $event->getCreatedAt()->format('l F j, Y, g:i a e'); ?></em>
+				<h2><?php echo '<a href="/events/show/'.$event->getId().'">'.$event->getName(); ?></a></h2><em> by <a href="/members/<?php echo $event->getUser()->getId();?>" class="userName"><strong><em><?php echo $event->getUser()->getName(); ?></em></strong></a> on <?php echo $event->getCreatedAt()->format('l F j, Y, g:i a e'); ?></em>
 				</div>
 			<div id='description' class="row">
 				<div class="span10 columns">
@@ -33,3 +33,6 @@
 	</section>
 	<?php } ?>
 </div>
+<section id="pagination">
+	<?php echo $pagination; ?>
+</section>

@@ -11,42 +11,15 @@ class Posts extends MY_Controller {
          $this->form_validation->set_error_delimiters('', '');
 	}
             
-    function index() {
-    	/*$query = $this->em->createQuery('SELECT COUNT(p.id) from models\Post p');
-    	$numArticles = $query->getSingleScalarResult();
-    	
-    	$this->load->library('pagination');
-		$config['base_url'] = base_url('posts');
-		$config['total_rows'] = $numArticles;
-		$config['per_page'] = '2';
-		$config['full_tag_open'] = '<div class="pagination">';
-		$config['full_tag_close'] = '</div>';
-		
-		$this->pagination->initialize($config);*/
-    	   
+    function index() {    	   
     	$query = $this->em->createQuery('SELECT p, t FROM models\Post p LEFT JOIN p.tags t ORDER BY p.created_at DESC');
 		$count = Paginate::getTotalQueryResults($query);
-		
-		$this->load->library('pagination');
-		$config['base_url'] = base_url('posts/index');
-		$config['total_rows'] = $count;
-		$config['per_page'] = '5';
-		$config['full_tag_open'] = '<div class="pagination"><ul>';
-		$config['full_tag_close'] = '</ul></div>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['num_tag_open'] = '<li>';		
-		$config['num_tag_close'] = '</li>';
-		$config['next_tag_open'] = '<li>';		
-		$config['next_tag_close'] = '</li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		
-		$this->pagination->initialize($config);
+		$per_page = 5;
+		$this->load->library('pagination', array('total' => $count, 'base_url' => 'posts/index', 'per_page' => $per_page));
 		
 		$offset = $this->uri->segment(3);
 		if (!$offset) $offset = 0;
-		$paginateQuery = Paginate::getPaginateQuery($query, $offset, 5); // Step 2 and 3
+		$paginateQuery = Paginate::getPaginateQuery($query, $offset, $per_page); // Step 2 and 3
 		$posts = $paginateQuery->getResult();
     	$data['posts'] = $posts;
     	$data['pagination'] = $this->pagination->create_links();
@@ -60,9 +33,18 @@ class Posts extends MY_Controller {
 			$data['post'] = $post;
 			$comments = $post->getComments();
 			if ($comments && count($comments)>0) $data['comments'] = $comments;
-			//$this->load->view('show_post', $data);
 			$this->template->title($post->getTitle());
 			$data['show_title'] = 0;
+			
+			$user = models\Current_User::user();
+			
+			$favorite = $this->em->getRepository('models\\Favorite')->findOneBy(array('user' => $user->getId(), 'post' => $id));
+			
+			if ($favorite) {
+				$data['liked'] = 1;
+			} else {
+				$data['liked'] = 0;
+			}
 			$this->template->build('show_post', $data);
 		} else {
 			$data['message'] = 'Invalid post id.';

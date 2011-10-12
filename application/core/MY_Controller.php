@@ -20,7 +20,7 @@ function __construct()  {
 		if (array_key_exists($con_met, $allPerms)) {
 			$user = models\Current_User::user();
 			if (!$user) {
-				$next = '/'.$controller.'/'.$method;
+				$next = '/'.$controller.'/'.$method.'/'.$this->uri->segment(3);
 				$this->session->set_userdata('next', $next);
 				redirect('/login/');
 				return;

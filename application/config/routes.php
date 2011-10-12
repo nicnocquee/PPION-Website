@@ -43,7 +43,7 @@ $route['404_override'] = '';
 
 // customized routes
 $route['members/(:num)'] = "members/show/$1";
-$route['events/(:num)'] = "events/show/$1";
+$route['events/(:num)'] = "events/index/$1";
 $route['posts/(:num)'] = "posts/index/$1";
 
 /* End of file routes.php */
