@@ -8,8 +8,8 @@
 /* Body and structure
 -------------------------------------------------- */
 body {
-  background-color: #fff;
-  position: relative;
+	position: relative;
+  background: url(http://subtlepatterns.com/images/bgnoise.gif) repeat #fff;
 }
 section {
   padding-top: 60px;
@@ -368,4 +368,25 @@ background-color: #f5f5f5;
   color: #bfbfbf;
   font-style: italic;
   padding-bottom: 3px;
+}
+
+#flickr {
+	height: 400px;
+	border: 1px solid #dfdfdf;
+	background-color: black;
+}
+
+#about, #recent_events, #recent_posts {
+	height: 170px;
+	margin-top: 10px;
+	border: 1px solid silver;
+	-moz-box-shadow: 0 0 0 #c5c5c5;
+	-webkit-box-shadow: 0 0 0 #c5c5c5;
+	box-shadow: 0 0 0 #c5c5c5;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.newposts {
+	list-style-position: inside;
 }
