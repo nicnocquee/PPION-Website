@@ -324,11 +324,14 @@ pre.prettyprint {
 }
 
 .commentBox {
-background-color: #f5f5f5;
-  margin-top: 10px;
+background-color: #EDEFF4;
+  margin-top: 3px;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-left: 0px;
+  -moz-box-shadow: 0 2px 2px;
+  -webkit-box-shadow: 0 2px 2px;
+  box-shadow: 0 2px 2px;
 }
 
 .userName {
