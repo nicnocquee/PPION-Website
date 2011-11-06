@@ -32,6 +32,7 @@
 		<? }
 	?>		
 	  </ul>
+	  <div class="beta"><img src="/images/beta.png"></div>
 	</div>
   </div> <!-- /fill -->
 </div> <!-- /topbar -->

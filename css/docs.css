@@ -404,3 +404,9 @@ left: 0;
 margin-top: -60px;
 z-index: 4;
 }
+
+.beta {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
