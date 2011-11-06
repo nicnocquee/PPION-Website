@@ -396,3 +396,11 @@ background-color: #EDEFF4;
 .newposts {
 	list-style-position: inside;
 }
+
+.feedback_btn {
+position: fixed;
+top: 50%;
+left: 0;
+margin-top: -60px;
+z-index: 4;
+}

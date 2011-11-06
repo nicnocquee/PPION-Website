@@ -13,8 +13,8 @@
 		$user = models\Current_User::user();
 		if (!$user) { ?>
 			<?php echo form_open('login/submit'); ?>
-				<input class="input-small" type="text" placeholder="E-mail">
-				<input class="input-small" type="password" placeholder="Password">
+				<input class="input-small" type="text" placeholder="E-mail" name="email">
+				<input class="input-small" type="password" placeholder="Password" name="password">
 				<button class="btn primary" type="submit">Log in</button>
 			  </form>
 		<? } else { ?>
