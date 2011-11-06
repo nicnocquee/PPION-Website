@@ -37,8 +37,10 @@ class Posts extends MY_Controller {
 			$data['show_title'] = 0;
 			
 			$user = models\Current_User::user();
-			
-			$favorite = $this->em->getRepository('models\\Favorite')->findOneBy(array('user' => $user->getId(), 'post' => $id));
+			$favorite = NULL;
+			if ($user) {
+				$favorite = $this->em->getRepository('models\\Favorite')->findOneBy(array('user' => $user->getId(), 'post' => $id));
+			}
 			
 			if ($favorite) {
 				$data['liked'] = 1;

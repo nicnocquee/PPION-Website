@@ -8,9 +8,16 @@ class Home extends MY_Controller {
 	}
             
     function index() {
-		//Just pass in a basic variable into an HTML view
-		$data['message'] = "This is home";
-		$this->load->view('home', $data);
+	    $q = $this->em->createQuery("select p from models\Post p");
+	    $q->setMaxResults(9);
+    	$recentPosts = $q->getResult();
+    	$q = $this->em->createQuery("select e from models\Event e");
+    	$q->setMaxResults(9);
+    	$recentEvents = $q->getResult();
+		$data['posts'] = $recentPosts;
+		$data['events'] = $recentEvents;
+		//$this->load->view('home', $data);
+		$this->template->build('home', $data);
 		
 	}
 }
