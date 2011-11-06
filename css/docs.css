@@ -378,13 +378,12 @@ background-color: #f5f5f5;
 
 #about, #recent_events, #recent_posts {
 	height: 170px;
-	margin-top: 10px;
+	margin-top: 20px;
 	border: 1px solid silver;
 	-moz-box-shadow: 0 0 0 #c5c5c5;
 	-webkit-box-shadow: 0 0 0 #c5c5c5;
 	box-shadow: 0 0 0 #c5c5c5;
 	padding: 10px;
-	margin-bottom: 10px;
 }
 
 .newposts {
