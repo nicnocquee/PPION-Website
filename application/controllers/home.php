@@ -9,10 +9,10 @@ class Home extends MY_Controller {
             
     function index() {
 	    $q = $this->em->createQuery("select p from models\Post p");
-	    $q->setMaxResults(3);
+	    $q->setMaxResults(9);
     	$recentPosts = $q->getResult();
     	$q = $this->em->createQuery("select e from models\Event e");
-    	$q->setMaxResults(3);
+    	$q->setMaxResults(9);
     	$recentEvents = $q->getResult();
 		$data['posts'] = $recentPosts;
 		$data['events'] = $recentEvents;
