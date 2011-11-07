@@ -3,9 +3,9 @@
 	<div class="container">
 	  <h3><a href="/home">PPION</a></h3>
 	  <ul>
-		<li <?php if ($template['title'] == 'Articles') echo 'class="active"'; ?>><a href="/posts">Artikel</a></li>
-		<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="/events">Event</a></li>
-		<li <?php if ($template['title'] == 'Members') echo 'class="active"'; ?>><a href="/members">Anggota</a></li>
+		<li <?php if ($template['title'] == 'Articles') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>posts">Artikel</a></li>
+		<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>events">Event</a></li>
+		<li <?php if ($template['title'] == 'Members') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>members">Anggota</a></li>
 		<li><a href="http://www.flickr.com/photos/ppi-on/"  target="_blank">Gallery</a></li>
 	  </ul>
 	<ul class="nav secondary-nav">
@@ -17,23 +17,23 @@
 				<input class="input-small" type="password" placeholder="Password" name="password">
 				<button class="btn primary" type="submit">Log in</button>
 			  </form>
-			  &nbsp;<button onClick="window.location='/signup'" type="signup" class="btn success small" style="margin-top: 5px">Belum punya akun?</button>
+			  &nbsp;<button onClick="window.location='<?php echo base_url(); ?>signup'" type="signup" class="btn success small" style="margin-top: 5px">Belum punya akun?</button>
 		<? } else { ?>
 			<li class="dropdown" data-dropdown="dropdown" >
 				<a href="#" class="dropdown-toggle"><?php echo $user->getName(); ?></a>
 					<ul class="dropdown-menu">
-					  <li><a href="/posts/add">Dashboard</a></li>
-					  <li><a href="/posts/add">Bikin Artikel Baru</a></li>
-					  <li><a href="/events/add">Bikin Event Baru</a></li>
+					  <li><a href="<?php echo base_url(); ?>posts/add">Dashboard</a></li>
+					  <li><a href="<?php echo base_url(); ?>posts/add">Bikin Artikel Baru</a></li>
+					  <li><a href="<?php echo base_url(); ?>events/add">Bikin Event Baru</a></li>
 					  <li class="divider"></li>
-					  <li><a href="/logout">Log out</a></li>
+					  <li><a href="<?php echo base_url(); ?>logout">Log out</a></li>
 					</ul>
 				</li>
 		
 		<? }
 	?>		
 	  </ul>
-	  <div class="beta"><img src="/images/beta.png"></div>
+	  <div class="beta"><img src="<?php echo base_url(); ?>images/beta.png"></div>
 	</div>
   </div> <!-- /fill -->
 </div> <!-- /topbar -->

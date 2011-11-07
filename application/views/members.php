@@ -15,7 +15,7 @@
 <tbody>
 	<?php foreach ($members as $member) { ?>
 	<tr>
-		<td><a href="/members/<?php echo $member->getId();?>" class="userName"><strong><?php echo $member->getName(); ?></strong></a></td>
+		<td><a href="<?php echo base_url(); ?>members/<?php echo $member->getId();?>" class="userName"><strong><?php echo $member->getName(); ?></strong></a></td>
 		<td><?php echo $member->getEmail();?></td>
 		<td><?php echo $member->getHometown();?></td>
 		<td><?php echo $member->getAffiliation();?></td>
