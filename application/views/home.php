@@ -16,7 +16,7 @@
 			<ul class="newposts">
 			<?php  
 				foreach ($posts as $post) {
-					echo '<li style="margin-left:-25px"><a href="'.base_url().'posts/'.$post->getId().'">'.$post->getTitle().'</a></li>';
+					echo '<li style="margin-left:-25px"><a href="'.base_url().'posts/show/'.$post->getId().'">'.$post->getTitle().'</a></li>';
 				}
 			?>
 			</ul>
@@ -28,7 +28,7 @@
 			<ul class="newposts">
 			<?php  
 				foreach ($events as $event) {
-					echo '<li style="margin-left:-25px"><a href="'.base_url().'events/'.$event->getId().'">'.$event->getName().'</a></li>';
+					echo '<li style="margin-left:-25px"><a href="'.base_url().'events/show/'.$event->getId().'">'.$event->getName().'</a></li>';
 				}
 			?>
 			</ul>
