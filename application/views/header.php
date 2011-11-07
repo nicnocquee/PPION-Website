@@ -6,6 +6,7 @@
 		<li <?php if ($template['title'] == 'Articles') echo 'class="active"'; ?>><a href="/posts">Artikel</a></li>
 		<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="/events">Event</a></li>
 		<li <?php if ($template['title'] == 'Members') echo 'class="active"'; ?>><a href="/members">Anggota</a></li>
+		<li><a href="http://www.flickr.com/photos/ppi-on/"  target="_blank">Gallery</a></li>
 	  </ul>
 	<ul class="nav secondary-nav">
 	<?php  
