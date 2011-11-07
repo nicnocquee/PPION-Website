@@ -10,7 +10,7 @@
 <?php if ($history == 'login') { ?>
 	<script>
     alert("You're not allowed to access this page");
-    location = "/home";
+    location = "<?php echo base_url(); ?>home";
 </script>
 <?php } else { ?>
 <script>

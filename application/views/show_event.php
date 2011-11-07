@@ -1,5 +1,5 @@
 <div class="page-header">
-				<h2><?php echo $event->getName(); ?></h2><em> by <a href="/members/<?php echo $event->getUser()->getId();?>" class="userName"><strong><em><?php echo $event->getUser()->getName(); ?></em></strong></a> on <?php echo $event->getCreatedAt()->format('l F j, Y, g:i a e'); ?></em>
+				<h2><?php echo $event->getName(); ?></h2><em> by <a href="<?php echo base_url(); ?>members/<?php echo $event->getUser()->getId();?>" class="userName"><strong><em><?php echo $event->getUser()->getName(); ?></em></strong></a> on <?php echo $event->getCreatedAt()->format('l F j, Y, g:i a e'); ?></em>
 				</div>
 			<div id='description' class="row">
 				<div class="span10 columns">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="span7 columns">
 				<?php
-					echo '<a href="/members/'.$comment->getUser()->getId().'" class="userName"><strong>'.$comment->getUser()->getName().'</strong></a>&nbsp'.$comment->getContent();
+					echo '<a href="'.base_url().'members/'.$comment->getUser()->getId().'" class="userName"><strong>'.$comment->getUser()->getName().'</strong></a>&nbsp'.$comment->getContent();
 					echo '<p class="commentDate">'.$comment->getCreatedAt()->format('l F j, Y g:i a').'</p>';
 				?>
 				</div>
@@ -64,7 +64,7 @@
 	?>
 	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
-				<form action="posts/comment">
+				<form action="<?php echo base_url(); ?>posts/comment">
 				<?php 
 					$data = array(
 								'name' => 'comment',

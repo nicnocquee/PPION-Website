@@ -17,7 +17,7 @@
 						  <img class="thumbnail" src="http://placehold.it/90x90" alt="">
 						</a>
 					</div>
-		<div class="span3 columns sidePostName"><a href="/members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><?php echo $post->getUser()->getName(); ?></strong></a>
+		<div class="span3 columns sidePostName"><a href="<?php echo base_url(); ?>members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><?php echo $post->getUser()->getName(); ?></strong></a>
 		on <?php echo $post->getCreatedAt()->format('l F j, Y g:i a e'); ?></div>
 	</div>
 	<div class="row sidePost">
@@ -49,7 +49,7 @@
 				</div>
 				<div class="span7 columns">
 				<?php
-					echo '<a href="/members/'.$comment->getUser()->getId().'" class="userName"><strong>'.$comment->getUser()->getName().'</strong></a>&nbsp'.$comment->getContent();
+					echo '<a href="'.base_url().'members/'.$comment->getUser()->getId().'" class="userName"><strong>'.$comment->getUser()->getName().'</strong></a>&nbsp'.$comment->getContent();
 					echo '<p class="commentDate">'.$comment->getCreatedAt()->format('l F j, Y g:i a').'</p>';
 				?>
 				</div>
@@ -66,7 +66,7 @@
 	?>
 	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
-				<form action="posts/comment">
+				<form action="<?php echo base_url(); ?>posts/comment">
 				<?php 
 					$data = array(
 								'name' => 'comment',
@@ -92,7 +92,7 @@ var postId = '<?php echo $post->getId(); ?>';
 	$(".like").click(function(e){
 	     // stop normal link click
 	     e.preventDefault(); 
-	     $.post('/favorites/add',{post_id:postId, csrf_test_name:$.cookie("csrf_cookie_name")},function(data) {
+	     $.post('<?php echo base_url(); ?>favorites/add',{post_id:postId, csrf_test_name:$.cookie("csrf_cookie_name")},function(data) {
 	     	if (data.result == '1') {
 	     		$('.like').hide();
 	     		$('.liked').fadeIn();

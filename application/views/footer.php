@@ -10,6 +10,6 @@
 
 <div class="feedback_btn">
 <a href="mailto:captain.ronan@gmail.com">
-<img src="/images/feedback.png" alt="feedback" title="feedback">
+<img src="<?php echo base_url(); ?>images/feedback.png" alt="feedback" title="feedback">
 </a>
 </div>

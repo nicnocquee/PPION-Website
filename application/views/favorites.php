@@ -5,7 +5,7 @@
 	foreach ($favorites as $favorite) { ?>
 	<section id="post">
 		<div class="row">
-		<a href="/posts/show/<?php echo $favorite->getPost()->getId();?>"><?php echo $favorite->getPost()->getTitle(); ?></a>
+		<a href="<?php echo base_url(); ?>posts/show/<?php echo $favorite->getPost()->getId();?>"><?php echo $favorite->getPost()->getTitle(); ?></a>
 		</div>
 	</section>
 	<?php }} else {
