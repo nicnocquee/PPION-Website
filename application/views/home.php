@@ -1,7 +1,7 @@
 <div id="home" class="container">
 	<div class="row">
 		<div class="span16"  id="flickr">
-			<center><a href="http://www.flickr.com/photos/ppi-on/5610026711/" title="hanami2011-2 by PPI-ON, on Flickr"><img src="http://farm6.static.flickr.com/5224/5610026711_f7b4925fb0_b.jpg" height="400" alt="hanami2011-2"></a></center>
+			<center><a href="http://www.flickr.com/photos/ppi-on/"  target="_blank" title="hanami2011-2 by PPI-ON, on Flickr"><img src="http://farm6.static.flickr.com/5224/5610026711_f7b4925fb0_b.jpg" height="400" alt="hanami2011-2"></a></center>
 		</div>
 	</div>
 	<div class="row">
