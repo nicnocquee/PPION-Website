@@ -10,7 +10,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="<?php echo base_url(); ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>js/google-code-prettify/prettify.css" rel="stylesheet">
 

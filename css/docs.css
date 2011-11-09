@@ -426,3 +426,16 @@ div.dashboard-content {
 	box-shadow: 0 0 4px #9197f7;
 	padding: 10px;
 }
+
+td.avatar {
+	width: 85px;
+}
+
+tr.color-on-hover:hover {
+	background-color: #e3e4fe;
+}
+
+.date {
+	color: #c4c3c3;
+	font-size: x-small;
+}

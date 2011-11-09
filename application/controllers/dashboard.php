@@ -61,7 +61,8 @@ class Dashboard extends MY_Controller {
 			$thisActivity['target_type'] = $target_type;
 			$thisActivity['target_title'] = $target_title;
 			$thisActivity['target_link'] = $target_link;
-			$thisActivity['activity_date'] = $activity->getCreatedAt()->format('l F j, Y g:i a e');;
+			$this->load->helper('date');
+			$thisActivity['activity_date'] = time_diff(now()-$activity->getCreatedAt()->getTimeStamp())." ago";
 			
 			$return[] = $thisActivity;
 		}
