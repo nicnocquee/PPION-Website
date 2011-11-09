@@ -26,7 +26,7 @@ class Login extends MY_Controller {
 		$next = $this->session->userdata('next');
 		$this->session->unset_userdata('next');
 		if ($next) redirect($next);
-		else redirect('home');
+		else redirect('dashboard');
 
 	}
 

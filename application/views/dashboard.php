@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row">
-	<div class="span16">
+	<div class="span12" style="text-align: right">
 		<a href="<?php echo base_url(); ?>posts/add" class="btn large primary">Bikin Artikel Baru</a>
 		<a href="<?php echo base_url(); ?>events/add" class="btn large success">Bikin Event Baru</a>
 	</div>
