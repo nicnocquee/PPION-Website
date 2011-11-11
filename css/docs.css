@@ -439,3 +439,10 @@ tr.color-on-hover:hover {
 	color: #c4c3c3;
 	font-size: x-small;
 }
+
+img.thumbnail {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
+}

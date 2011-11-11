@@ -4,3 +4,9 @@
 [submodule "js/jwysiwyg"]
 	path = js/jwysiwyg
 	url = https://github.com/akzhan/jwysiwyg.git
+[submodule "js/upload"]
+	path = js/upload
+	url = https://github.com/blueimp/jQuery-File-Upload.git
+[submodule "js/cookie"]
+	path = js/cookie
+	url = https://github.com/carhartl/jquery-cookie.git

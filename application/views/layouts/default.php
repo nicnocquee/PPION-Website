@@ -12,11 +12,14 @@
     <!-- Le styles -->
     <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/progress.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>js/google-code-prettify/prettify.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>js/jwysiwyg/jquery.wysiwyg.css" rel="stylesheet">
 
     <!-- Le javascript -->
-    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+   <!-- <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>
     <script src="<?php echo base_url(); ?>js/google-code-prettify/prettify.js"></script>
     <script src="<?php echo base_url(); ?>js/application.js"></script>
