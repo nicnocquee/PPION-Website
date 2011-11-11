@@ -13,6 +13,13 @@
 		<span class="help-inline"><?php echo form_error('title'); ?></span>
 		</div>
 	</div>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jwysiwyg/jquery.wysiwyg.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+		    $('#wysiwyg').wysiwyg();
+		});
+	</script>
 	<div class="<?php if(form_error('content')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="content">Isi: </label>
 		<div class="input">
@@ -20,7 +27,9 @@
 			$data = array(
 						'name' => 'content',
 						'value' => set_value('content'),
-						'class' => 'xxlarge'
+						'class' => 'xxlarge',
+						'id' => 'wysiwyg'
+						
 					);
 		echo form_textarea($data); ?>
 		<span class="help-inline"><?php echo form_error('content'); ?></span>

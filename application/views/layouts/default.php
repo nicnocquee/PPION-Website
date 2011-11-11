@@ -13,6 +13,7 @@
     <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>js/jwysiwyg/jquery.wysiwyg.css" rel="stylesheet">
 
     <!-- Le javascript -->
     <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>

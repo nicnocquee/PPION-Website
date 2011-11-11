@@ -1,3 +1,6 @@
 [submodule "application/libraries/DoctrineExtensions"]
 	path = application/libraries/DoctrineExtensions
 	url = https://github.com/beberlei/DoctrineExtensions.git
+[submodule "js/jwysiwyg"]
+	path = js/jwysiwyg
+	url = https://github.com/akzhan/jwysiwyg.git
