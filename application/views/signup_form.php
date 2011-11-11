@@ -5,13 +5,24 @@ function addContact() {
 	console.log('running addPerson')
 	//current keeps track of how many people we have.
 	current++;
-	var strToAdd = '<p><label for="contact">Address: </label><input type="text" name="address'+current+'" value=""  /><select name="addresstype'+current+'">'
-strToAdd+='<option value="0">Phone</option><option value="1">Home address</option><option value="2">Email</option><option value="3">Facebook</option><option value="4">YM</option><option value="5">Twitter</option></select></p>'
+	var strToAdd = '<div class="clearfix">'+		
+			'<label for="name">Address: </label>'+
+			'<div class="input">'+
+			'<div class="inline-inputs">'+
+			'<input type="text" name="address'+current+'" value="" class="xlarge"/>'+	
+				' <select name="addresstype'+current+'">'+
+					'<option>Phone</option>'+
+					'<option>Home Address</option>'+
+					'<option>Facebook</option>'+
+					'<option>YM</option>'+
+					'<option>Twitter</option>'+
+				'</select>'+
+			'</div>';
 	
-	console.log(strToAdd)
-	$('#contactField').append(strToAdd)
-	oFormObject = document.forms['signup_form']
-	oFormObject.elements["number_of_contacts"].value = current
+	console.log(strToAdd);
+	$('#contactField').append(strToAdd);
+	oFormObject = document.forms['signup_form'];
+	oFormObject.elements["number_of_contacts"].value = current;
 }
 
 $(document).ready(function(){
@@ -195,8 +206,8 @@ $(document).ready(function(){
 		<span class="help-inline"><?php echo form_error('position'); ?></span>
 		</div>
 	</div>
-		<?php echo form_fieldset('Contact Information', array('id'=>'contactField'));?>
-		
+		<?php echo form_fieldset('Contact Information');?>
+		<div id="contactField">
 		<div class="clearfix">		
 		<label for="name">Address: </label>
 		<div class="input">
@@ -219,9 +230,10 @@ $(document).ready(function(){
 		</div>
 	</div>
 	</div>
+	</div>
 	
 	<div class="input">
-	<input type="button" id="addContact" value="Add Another Contact Information">
+	<input type="button" id="addContact" value="Add Another Contact Information" class="btn">
 	</div>
 	<?php echo form_fieldset_close(); ?>
 	<p>
