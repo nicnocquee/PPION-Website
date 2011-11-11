@@ -22,7 +22,7 @@
 			<li class="dropdown" data-dropdown="dropdown" >
 				<a href="#" class="dropdown-toggle"><?php echo $user->getName(); ?></a>
 					<ul class="dropdown-menu">
-					  <li><a href="<?php echo base_url(); ?>posts/add">Dashboard</a></li>
+					  <li><a href="<?php echo base_url(); ?>dashboard/">Dashboard</a></li>
 					  <li><a href="<?php echo base_url(); ?>posts/add">Bikin Artikel Baru</a></li>
 					  <li><a href="<?php echo base_url(); ?>events/add">Bikin Event Baru</a></li>
 					  <li class="divider"></li>

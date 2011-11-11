@@ -1,6 +1,12 @@
 <?php
  
 namespace models;
+
+/*
+urgency:
+0 -> normal
+1 -> important
+*/
  
 /**
  * @Entity
@@ -38,6 +44,11 @@ class Post
 	 * @Column(type="string", length=200, nullable=true)
 	 */
 	private $flag;
+	
+	/**
+	 * @Column(type="integer", nullable=true)
+	 */
+	private $urgency;
         
          /**
         * @ManyToMany(targetEntity="Tag", inversedBy="posts")
@@ -68,6 +79,7 @@ class Post
 	public function __construct()
 	{
             $this->created_at = new \DateTime("now");
+            $this->urgency = 0;
 	}
         
     public function getId() { return $this->id; }
