@@ -14,15 +14,18 @@
 		</div>
 	</div>
 	
+	
 	<div class="<?php if(form_error('content')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="content">Isi: </label>
+		<div class="wmd-panel">
 		<div class="input">
+			<div id="wmd-button-bar"></div>
 		<?php 
 			$data = array(
 						'name' => 'content',
 						'value' => set_value('content'),
-						'class' => 'xxlarge',
-						'id' => 'mytext'
+						'class' => 'xxlarge wmd-input',
+						'id' => 'wmd-input'
 					);
 		echo form_textarea($data); ?>
 		<span class="help-block">Use <a href="http://daringfireball.net/projects/markdown/">Markdown</a> syntax to format your post. For example, 
@@ -32,7 +35,7 @@
 		<br />Check <a href="http://daringfireball.net/projects/markdown/dingus">here</a> for more syntaxes.</span>
 		<span class="help-inline"><?php echo form_error('content'); ?></span>
 		</div>
-		
+		</div>
 	</div>
 	
 	<div class="clearfix">
@@ -105,13 +108,40 @@
 	<?php echo form_close(); ?>
 </div>
 <div class="row">
-	<div class="span16 preview" style="display: none">
+	<div class="span16 preview">
 		<h2>Preview</h2>
-		<div class="previewcontent"></div>
+		<div class="wmd-panel wmd-preview" id="wmd-preview"></div>
 	</div>
 </div>
 
-<script src="<?php echo base_url(); ?>js/cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/pagedown/Markdown.Converter.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/pagedown/Markdown.Sanitizer.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/pagedown/Markdown.Editor.js"></script>
+<script type="text/javascript">
+            (function () {
+                var converter1 = Markdown.getSanitizingConverter();
+                var editor1 = new Markdown.Editor(converter1);
+                editor1.run();
+                
+                var converter2 = new Markdown.Converter();
+
+                converter2.hooks.chain("preConversion", function (text) {
+                    return text.replace(/\b(a\w*)/gi, "*$1*");
+                });
+
+                converter2.hooks.chain("plainLinkText", function (url) {
+                    return "This is a link to " + url.replace(/^https?:\/\//, "");
+                });
+                
+                var help = function () { alert("Do you need help?"); }
+                
+                var editor2 = new Markdown.Editor(converter2, "-second", { handler: help });
+                
+                editor2.run();
+            })();
+        </script>
+
+<!--<script src="<?php echo base_url(); ?>js/cookie/jquery.cookie.js"></script>
 <script type="text/javascript">
 	$("#mytext").keyup(function() {
 		var cct = $.cookie('csrf_cookie_name');
@@ -130,4 +160,4 @@
 		// });
 	
 	});
-</script>
+</script>-->
