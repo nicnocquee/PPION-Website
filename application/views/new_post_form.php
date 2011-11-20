@@ -32,6 +32,7 @@
 		<br />Italic and Bold: *italic* **bold**
 		<br />Link: An [example](http://url.com/ "Title")
 		<br />Image: ![alt text](/path/img.jpg "Title")
+		<br />Blank line to add new line.
 		<br />Check <a href="http://daringfireball.net/projects/markdown/dingus">here</a> for more syntaxes.</span>
 		<span class="help-inline"><?php echo form_error('content'); ?></span>
 		</div>
@@ -44,22 +45,30 @@
 			<input id="fileupload" type="file" name="userfile" multiple><div class="meter orange nostripes" style="display: none">
 				<span style="width: 30%"></span>
 			</div>
+			<span class="help-block">Allowed file types: JPG, PNG. Max size 600x600 px. <strong id="image-help" style="display: none">Click on the image(s) below to insert it to the post.</strong></span>
 			<div class="imagepreviews" style="display: none">
 			</div>
 			<script src="<?php echo base_url(); ?>js/upload/jquery.iframe-transport.js"></script>
 			<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload.js"></script>
 			<script>
 			$(function () {
+				var thumbnailindex = 0;
 			    $('#fileupload').fileupload({
 			        dataType: 'json',
 			        url: '<?php echo base_url(); ?>upload/do_upload/',
 			        done: function (e, data) {
 			            $.each(data.result, function (index, file) {
-			                //$('<p/>').text(file.name).appendTo('body');
 			                var url = "<?php echo base_url(); ?>uploads/"+file.name;
-			                console.log(url);
 			                $('.imagepreviews').show();
-			                $('.imagepreviews').append("<img src=\""+url+"\" class=\"thumbnail\">");
+			                $('#image-help').show();
+			                var thumbnail = "thumbnail-"+thumbnailindex;
+			                $('.imagepreviews').append("<img src=\""+url+"\" class=\""+thumbnail+"\">");
+			                $(".thumbnail-"+thumbnailindex).click(function () {
+								var imageURL = this.src;
+								$('#wmd-input').val($('#wmd-input').val()+"\n![]("+imageURL+")");
+								editor1.refreshPreview();
+			                });
+			                thumbnailindex = thumbnailindex + 1;
 			            });			            
 			        }
 			    });
@@ -118,28 +127,13 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/pagedown/Markdown.Sanitizer.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/pagedown/Markdown.Editor.js"></script>
 <script type="text/javascript">
-            (function () {
-                var converter1 = Markdown.getSanitizingConverter();
-                var editor1 = new Markdown.Editor(converter1);
-                editor1.run();
-                
-                var converter2 = new Markdown.Converter();
-
-                converter2.hooks.chain("preConversion", function (text) {
-                    return text.replace(/\b(a\w*)/gi, "*$1*");
-                });
-
-                converter2.hooks.chain("plainLinkText", function (url) {
-                    return "This is a link to " + url.replace(/^https?:\/\//, "");
-                });
-                
-                var help = function () { alert("Do you need help?"); }
-                
-                var editor2 = new Markdown.Editor(converter2, "-second", { handler: help });
-                
-                editor2.run();
-            })();
-        </script>
+	var editor1;
+    (function () {
+        var converter1 = Markdown.getSanitizingConverter();
+        editor1 = new Markdown.Editor(converter1);
+        editor1.run();
+    })();
+</script>
 
 <!--<script src="<?php echo base_url(); ?>js/cookie/jquery.cookie.js"></script>
 <script type="text/javascript">
