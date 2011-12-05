@@ -13,7 +13,7 @@ class Posts extends MY_Controller {
             
     function index() {   
     	$this->load->library('mymarkdown');
-    	$query = $this->em->createQuery('SELECT p, t FROM models\Post p LEFT JOIN p.tags t ORDER BY p.created_at DESC');
+    	$query = $this->em->createQuery("SELECT p, t FROM models\Post p LEFT JOIN p.tags t WHERE p.flag IS NULL ORDER BY p.created_at DESC");
 		$count = Paginate::getTotalQueryResults($query);
 		$per_page = 5;
 		$this->load->library('pagination', array('total' => $count, 'base_url' => 'posts/index', 'per_page' => $per_page));
@@ -31,7 +31,7 @@ class Posts extends MY_Controller {
 	function show ($id) {
 		$this->load->library('mymarkdown');
 		$post = $this->em->find('models\Post', $id);
-		if ($post) {
+		if ($post && $post->getFlag()!='deleted') {
 			$data['post'] = $post;
 			$comments = $post->getComments();
 			if ($comments && count($comments)>0) $data['comments'] = $comments;
@@ -117,7 +117,19 @@ class Posts extends MY_Controller {
 	public function add() {
 		//$this->load->view('new_post_form');
 		$this->template->title('Artikel Baru');
-		$this->template->build('new_post_form', array('show_title' => 1));
+		$this->template->build('new_post_form', array('show_title' => 1, 'post' => NULL));
+	}
+	
+	public function delete($id) {
+		$post = $this->em->find('models\Post', $id);
+		$success = 0;
+		if ($post) {
+			$post->setFlag('deleted');
+			$this->em->flush();
+			$success = 1;
+		}
+		$data['success'] = $success;
+		$this->load->view('post_delete', $data);
 	}
 	
 	public function edit($id) {

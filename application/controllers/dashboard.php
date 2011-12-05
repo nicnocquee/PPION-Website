@@ -17,10 +17,14 @@ class Dashboard extends MY_Controller {
 		$this->load->view('activities', $data);
 	}
 	
-	function myposts() {
-		$data['posts'] = $this->_fetchMyArticles(0);
+	function mypostsbody($start=0) {
+		$data['posts'] = $this->_fetchMyArticles($start);
 		$this->load->helper('date');
-		$this->load->view('my_posts', $data);
+		$this->load->view('my_posts_body', $data);
+	}
+	
+	function myposts() {
+		$this->load->view('my_posts');
 	}
 	
 	function myevents() {
@@ -47,9 +51,11 @@ class Dashboard extends MY_Controller {
 			
 			if ($activity->getType() == 1) {
 				$post = $this->em->find('models\Post', $activity->getTargetId());
-				$target_title = $post->getTitle();
-				$target_link = base_url().'posts/'.$post->getId();
-				$target_type = 'artikel';
+				if ($post) {
+					$target_title = $post->getTitle();
+					$target_link = base_url().'posts/'.$post->getId();
+					$target_type = 'artikel';	
+				}
 			} else if ($activity->getType() == 2) {
 				$post = $this->em->find('models\Post', $activity->getTargetId());
 				$target_title = $post->getTitle();
@@ -75,7 +81,7 @@ class Dashboard extends MY_Controller {
 		$user = models\Current_User::user();
 		$posts = array();
 		if ($user) {
-			$query = $this->em->createQuery('SELECT p FROM models\Post p WHERE p.user = ?1 ORDER BY p.created_at DESC');
+			$query = $this->em->createQuery('SELECT p FROM models\Post p WHERE p.user = ?1 AND p.flag IS NULL ORDER BY p.created_at DESC');
 			$query->setParameter(1, $user->getId());
 			$query->setFirstResult($startPage);
 			$query->setMaxResults(10);
