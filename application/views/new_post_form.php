@@ -65,7 +65,7 @@
 			                $('.imagepreviews').append("<img src=\""+url+"\" class=\""+thumbnail+"\">");
 			                $(".thumbnail-"+thumbnailindex).click(function () {
 								var imageURL = this.src;
-								$('#wmd-input').val($('#wmd-input').val()+"\n![]("+imageURL+")");
+								$('#wmd-input').val($('#wmd-input').val()+"\n<img src=\""+imageURL+"\" width=\"400\">");
 								editor1.refreshPreview();
 			                });
 			                thumbnailindex = thumbnailindex + 1;
@@ -119,7 +119,7 @@
 <div class="row">
 	<div class="span16 preview">
 		<h2>Preview</h2>
-		<div class="wmd-panel wmd-preview" id="wmd-preview"></div>
+		<div class="wmd-preview post-preview" id="wmd-preview"></div>
 	</div>
 </div>
 

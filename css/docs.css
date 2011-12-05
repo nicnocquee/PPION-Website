@@ -440,7 +440,7 @@ tr.color-on-hover:hover {
 	font-size: x-small;
 }
 
-img.thumbnail {
+.imagepreviews img {
 	width: 100px;
 	height: 100px;
 	margin-right: 10px;
