@@ -11,7 +11,8 @@ class Posts extends MY_Controller {
          $this->form_validation->set_error_delimiters('', '');
 	}
             
-    function index() {    	   
+    function index() {   
+    	$this->load->library('mymarkdown');
     	$query = $this->em->createQuery('SELECT p, t FROM models\Post p LEFT JOIN p.tags t ORDER BY p.created_at DESC');
 		$count = Paginate::getTotalQueryResults($query);
 		$per_page = 5;
@@ -28,6 +29,7 @@ class Posts extends MY_Controller {
 	}
 	
 	function show ($id) {
+		$this->load->library('mymarkdown');
 		$post = $this->em->find('models\Post', $id);
 		if ($post) {
 			$data['post'] = $post;

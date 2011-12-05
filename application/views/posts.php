@@ -7,7 +7,7 @@
 		<div class="postTitleDate"><small class="postTitleDate">by <a href="/members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><em><?php echo $post->getUser()->getName(); ?></em></strong></a> on <?php echo $post->getCreatedAt()->format('l F j, Y, g:i a'); ?></small></div>
 		</div>
 		<div id='content'>
-			<?php echo nl2br($post->getContent()); ?>
+			<?php echo $this->mymarkdown->convert(nl2br($post->getContent())); ?>
 		</div>
 		<div class="post-footer">
 		Tags: <?php echo implode(', ', $post->getTagsNameArray()); ?>

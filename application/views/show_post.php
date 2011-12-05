@@ -8,7 +8,7 @@
 	</div>
 	<div id='description' class="row">
 	<div id='content' class="span10 columns">
-		<?php echo nl2br($post->getContent()); ?>
+		<?php echo $this->mymarkdown->convert(nl2br($post->getContent())); ?>
 	</div>
 	<div id='side' class="span6 columns">
 	<div class="row sidePost">
