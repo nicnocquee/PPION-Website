@@ -79,11 +79,15 @@ class Posts extends MY_Controller {
 			$tagsArray[] = $tag1;
 		}
 		
-		// dummy!! should get the currently logged in user
-		$user1 = $this->em->find('models\User','1');
+		$user = models\Current_User::user();
+		$post = NULL;
+		if ($this->input->post('edit') == 0) {
+			$post = new models\Post;
+		} else {
+			$post = $this->em->find('models\Post', $this->input->post('post_id'));
+		}
 		
-		$post = new models\Post;
-		$post->setUser($user1);
+		$post->setUser($user);
 		$post->setTitle($this->input->post('title'));
 		$post->setContent($this->input->post('content'));
 		$post->setTags($tagsArray);
@@ -114,5 +118,15 @@ class Posts extends MY_Controller {
 		//$this->load->view('new_post_form');
 		$this->template->title('Artikel Baru');
 		$this->template->build('new_post_form', array('show_title' => 1));
+	}
+	
+	public function edit($id) {
+		$post = $this->em->find('models\Post', $id);
+		if ($post) {
+			$this->template->title('Editing '.$post->getTitle());
+			$data['post'] = $post;
+			$data['show_title'] = 1;
+			$this->template->build('new_post_form', $data);
+		}
 	}
 }

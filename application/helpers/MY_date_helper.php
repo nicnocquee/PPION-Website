@@ -12,11 +12,14 @@ function time_diff($s){
         $m = $m-($hr*60); // min left over 
         $td = "$hr hr"; if($hr>1) $td .= "s"; 
     } 
-    if($hr>23){ 
+    if($hr>23 && $hr<168){ 
         $d = (int)($hr/24); 
         $hr = $hr-($d*24); // hr left over 
         $td = "$d day"; if($d>1) $td .= "s"; 
-    } 
+    }
+    if($hr>167) {
+    	$td = "more than a week ago";
+    }
     return $td; 
 } 
 

@@ -18,7 +18,9 @@ class Dashboard extends MY_Controller {
 	}
 	
 	function myposts() {
-		$this->load->view('my_posts');
+		$data['posts'] = $this->_fetchMyArticles(0);
+		$this->load->helper('date');
+		$this->load->view('my_posts', $data);
 	}
 	
 	function myevents() {
@@ -67,5 +69,20 @@ class Dashboard extends MY_Controller {
 			$return[] = $thisActivity;
 		}
 		return $return;
+	}
+	
+	private function _fetchMyArticles($startPage) {
+		$user = models\Current_User::user();
+		$posts = array();
+		if ($user) {
+			$query = $this->em->createQuery('SELECT p FROM models\Post p WHERE p.user = ?1 ORDER BY p.created_at DESC');
+			$query->setParameter(1, $user->getId());
+			$query->setFirstResult($startPage);
+			$query->setMaxResults(10);
+			
+			$posts = $query->getResult();
+		}
+		
+		return $posts;
 	}
 }

@@ -1,12 +1,24 @@
 <div id="newpost_form" class="span16 columns">
-	<?php echo form_open('posts/submit', array('id' => 'newpost_form')); ?>
+	<?php 
+		echo form_open('posts/submit', array('id' => 'newpost_form')); 
+		if ($post) { ?>
+			<input type="hidden" name="edit" value="1">
+			<input type="hidden" name="post_id" value="<?php echo $post->getId(); ?>">
+		<? } else { ?>
+			<input type="hidden" name="edit" value="0">
+		<? }
+	
+	?>
+	
 	<div class="<?php if(form_error('title')=="") echo "clearfix"; else echo "clearfix error" ?>">		
 		<label for="title">Judul: </label>
 		<div class="input">
 		<?php 
+			$title = set_value('title');
+			if ($post) $title = $post->getTitle();
 			$data = array(
 						'name' => 'title',
-						'value' => set_value('title'),
+						'value' => $title,
 						'class' => 'xlarge'
 					);
 		echo form_input($data); ?>
@@ -21,9 +33,11 @@
 		<div class="input">
 			<div id="wmd-button-bar"></div>
 		<?php 
+			$content = set_value('content');
+			if ($post) $content = $post->getContent();
 			$data = array(
 						'name' => 'content',
-						'value' => set_value('content'),
+						'value' => $content,
 						'class' => 'xxlarge wmd-input',
 						'id' => 'wmd-input'
 					);
@@ -101,9 +115,11 @@
 		<label for="tags">Tags (comma separated): </label>
 		<div class="input">
 		<?php 
+			$tags = set_value('tags');
+			if ($post) $tags = implode(', ', $post->getTagsNameArray());
 			$data = array(
 						'name' => 'tags',
-						'value' => set_value('tags'),
+						'value' => $tags,
 						'class' => 'xlarge'
 					);
 		echo form_input($data); ?>
