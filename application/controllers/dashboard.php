@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\ORM\Query;
+
 class Dashboard extends MY_Controller {
 	function  __construct()  {
 		/* Inherit the CI_Controller construct because we're using a 
@@ -32,49 +34,46 @@ class Dashboard extends MY_Controller {
 	}
 	
 	function myfavoriteposts() {
-		$this->load->view('my_favorite_posts');
+		$data['favorites'] = $this->_fetchMyFavorites();
+		$this->load->view('my_favorite_posts', $data);
 	}
 	
 	private function _fetchActivities() {
-		$q = $this->em->createQuery("select a, u from models\Activity a LEFT JOIN a.user u ORDER BY a.created_at DESC");
+		$this->load->helper('date');
+		$q = $this->em->createQuery('select p.id as post_id, p.title, u.id as user_id, u.name as user_name, p.created_at from models\Post p LEFT JOIN p.user u WHERE p.flag IS NULL ORDER BY p.created_at DESC');
 		$q->setMaxResults(20);
-		$recentActivities = $q->getResult();
-		$return = array();
-		foreach ($recentActivities as $activity) { 
-			$user_name = $activity->getUser()->getName();
-			$user_link = base_url().'members/'.$activity->getUser()->getId();
-			$activity_name = $activity->getName();
-			$target_type = $activity->getTargetType();
-			
-			$target_title = '';
-			$target_link = '';
-			
-			if ($activity->getType() == 1) {
-				$post = $this->em->find('models\Post', $activity->getTargetId());
-				if ($post) {
-					$target_title = $post->getTitle();
-					$target_link = base_url().'posts/'.$post->getId();
-					$target_type = 'artikel';	
-				}
-			} else if ($activity->getType() == 2) {
-				$post = $this->em->find('models\Post', $activity->getTargetId());
-				$target_title = $post->getTitle();
-				$target_link = base_url().'posts/'.$post->getId();
-				$target_type = 'artikel';
-			}
-			
-			$thisActivity['user_name'] = $user_name;
-			$thisActivity['user_link'] = $user_link;
-			$thisActivity['activity_name'] = $activity_name;
-			$thisActivity['target_type'] = $target_type;
-			$thisActivity['target_title'] = $target_title;
-			$thisActivity['target_link'] = $target_link;
-			$this->load->helper('date');
-			$thisActivity['activity_date'] = time_diff(now()-$activity->getCreatedAt()->getTimeStamp())." ago";
-			
-			$return[] = $thisActivity;
+		$posts = $q->getResult(Query::HYDRATE_ARRAY);
+		foreach ($posts as $key => $value) {
+			$posts[$key]['type'] = 'post';
+			$posts[$key]['action'] = 'posted';
+			$posts[$key]['_created_at'] = time_diff(now() - strtotime($value['created_at']));
 		}
-		return $return;
+		
+		$q = $this->em->createQuery('select p.id as post_id, p.title, c.created_at, u.id as user_id, u.name as user_name from models\Comment c LEFT JOIN c.post p LEFT JOIN c.user u ORDER BY c.created_at DESC');
+		$q->setMaxResults(20);
+		$comments = $q->getResult(Query::HYDRATE_ARRAY);
+		foreach ($comments as $key => $value) {
+			$comments[$key]['type'] = 'comment';
+			$comments[$key]['action'] = 'commented on';
+			$comments[$key]['_created_at'] = time_diff(now() - strtotime($value['created_at']));
+		}
+		
+		$q = $this->em->createQuery('select f.created_at, p.id as post_id, p.title, u.id as user_id, u.name as user_name from models\Favorite f LEFT JOIN f.post p LEFT JOIN f.user u ORDER BY f.created_at DESC');
+		$q->setMaxResults(20);
+		$favorites = $q->getResult(Query::HYDRATE_ARRAY);
+		foreach ($favorites as $key => $value) {
+			$favorites[$key]['type'] = 'favorite';
+			$favorites[$key]['action'] = 'liked';
+			$favorites[$key]['_created_at'] = time_diff(now() - strtotime($value['created_at']));
+		}
+		//die(print_r($favorites));
+		$activities = array_merge($posts, $comments, $favorites);
+		foreach ($activities as $key => $value) {
+			$activity[$key] = $value['created_at'];	
+		}
+		array_multisort($activity, SORT_DESC, $activities);
+		//die(print_r(json_encode($activities)));
+		return $activities;
 	}
 	
 	private function _fetchMyArticles($startPage) {
@@ -90,5 +89,19 @@ class Dashboard extends MY_Controller {
 		}
 		
 		return $posts;
+	}
+	
+	private function _fetchMyFavorites() {
+		$this->load->helper('date');
+		$user = models\Current_User::user();
+		if ($user) {
+			$q = $this->em->createQuery('select f.created_at, p.id as post_id, p.title from models\Favorite f LEFT JOIN f.post p WHERE f.user = ?1 ORDER BY f.created_at DESC');
+			$q->setParameter(1, $user->getId());
+			$favorites = $q->getResult(Query::HYDRATE_ARRAY);
+			foreach ($favorites as $key => $value) {
+				$favorites[$key]['_created_at'] = time_diff(now() - strtotime($value['created_at']));
+			}
+		}
+		return $favorites;
 	}
 }

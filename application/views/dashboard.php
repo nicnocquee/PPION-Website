@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="span12" style="text-align: right">
 		<a href="<?php echo base_url(); ?>posts/add" class="btn large primary">Bikin Artikel Baru</a>
-		<a href="<?php echo base_url(); ?>events/add" class="btn large success">Bikin Event Baru</a>
+			<!--<a href="<?php echo base_url(); ?>events/add" class="btn large success">Bikin Event Baru</a>-->
 	</div>
 </div>
 <br />
@@ -13,7 +13,7 @@
 			<ul class="tabs">
 				<li class="active activities-tab"><a href="javascript:activities()">Aktivitas</a></li>
 				<li class="myarticles-tab"><a href="javascript:myarticles()">Artikelku</a></li>
-				<li class="myevents-tab"><a href="javascript:myevents()">Eventku</a></li>
+				<!--<li class="myevents-tab"><a href="javascript:myevents()">Eventku</a></li>-->
 				<li class="myfavoritearticles-tab"><a href="javascript:myfavoritearticles()">Artikel Favorit</a></li>
 			</ul>
 		</div>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 </div>
-<div class="span4 sidebar">
+<!--<div class="span4 sidebar">
 	<h3>Most favorite articles</h3>
 	<ul>
 		<li><a href="#">Artikel 1</a></li>
@@ -39,7 +39,7 @@
 		<li><a href="#">Artikel 1</a></li>
 		<li><a href="#">Artikel 1</a></li>
 	</ul>
-</div>
+</div>-->
 </div>
 </div>
 

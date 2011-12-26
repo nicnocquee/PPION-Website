@@ -5,10 +5,8 @@
 		
 	?>
 			<tr class="color-on-hover">
-				<td class="avatar"><img src="http://www.dentistry.co.uk/forum/forum_graphics/avatar_placeholder.gif"></td>
-				<td><a href="<?php echo $activity['user_link']; ?>"><?php echo $activity['user_name']; ?></a>&nbsp;<?php echo $activity['activity_name']; ?>&nbsp;<?php echo $activity['target_type']; ?>
-				<h3><a href="<?php echo $activity['target_link'] ?>"><?php echo $activity['target_title']; ?></a></h3></td>
-				<td style="text-align: right" class="date"><?php echo $activity['activity_date']; ?></td>
+				<td><a href="<?php echo base_url().'members/'.$activity['user_id']; ?>"><?php echo $activity['user_name']; ?></a> <?php echo $activity['action']; ?> <a href="<?php echo base_url().'posts/show/'.$activity['post_id']; ?>"><?php echo $activity['title']; ?></a>.</td>
+				<td><?php echo $activity['_created_at']; ?></td>
 			</tr>
 	<? }
 ?>

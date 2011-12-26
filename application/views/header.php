@@ -4,7 +4,7 @@
 	  <h3><a href="<?php echo base_url(); ?>home">PPION</a></h3>
 	  <ul>
 		<li <?php if ($template['title'] == 'Articles') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>posts">Artikel</a></li>
-		<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>events">Event</a></li>
+		<!--<li <?php if ($template['title'] == 'Events') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>events">Event</a></li>-->
 		<li <?php if ($template['title'] == 'Members') echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>members">Anggota</a></li>
 		<li><a href="http://www.flickr.com/photos/ppi-on/"  target="_blank">Gallery</a></li>
 	  </ul>
