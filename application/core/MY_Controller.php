@@ -21,6 +21,11 @@ function __construct()  {
 			$user = models\Current_User::user();
 			if (!$user) {
 				$next = '/'.$controller.'/'.$method.'/'.$this->uri->segment(3);
+				if ($this->input->post()) {
+					log_message('debug', 'there is post to post: '.print_r($this->input->post(), true));
+					$next_post = $this->input->post();
+					$this->session->set_userdata('next_post', $next_post);
+				}
 				$this->session->set_userdata('next', $next);
 				redirect('/login/');
 				return;

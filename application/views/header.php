@@ -24,7 +24,7 @@
 					<ul class="dropdown-menu">
 					  <li><a href="<?php echo base_url(); ?>dashboard/">Dashboard</a></li>
 					  <li><a href="<?php echo base_url(); ?>posts/add">Bikin Artikel Baru</a></li>
-					  <li><a href="<?php echo base_url(); ?>events/add">Bikin Event Baru</a></li>
+					  <!--<li><a href="<?php echo base_url(); ?>events/add">Bikin Event Baru</a></li>-->
 					  <li class="divider"></li>
 					  <li><a href="<?php echo base_url(); ?>logout">Log out</a></li>
 					</ul>

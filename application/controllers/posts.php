@@ -49,6 +49,16 @@ class Posts extends MY_Controller {
 			} else {
 				$data['liked'] = 0;
 			}
+			$data['comment_content'] = NULL;
+			if ($this->session->userdata('next_post')) {
+				$inputpost = $this->session->userdata('next_post');
+				log_message('debug', 'next post!'.print_r($inputpost, true));
+				if ($inputpost['comment']) {
+					$content = $inputpost['comment'];
+					$data['comment_content'] = $content;
+					$this->session->unset_userdata('next_post');
+				}
+			}
 			$this->template->build('show_post', $data);
 		} else {
 			$data['message'] = 'Invalid post id.';
@@ -114,6 +124,15 @@ class Posts extends MY_Controller {
 
 	}
 	
+	private function _submit_comment_validate() {
+	
+			// validation rules
+			$this->form_validation->set_rules('comment', 'Komen',
+				'trim|required');
+			return $this->form_validation->run();
+	
+		}
+	
 	public function add() {
 		//$this->load->view('new_post_form');
 		$this->template->title('Artikel Baru');
@@ -122,8 +141,9 @@ class Posts extends MY_Controller {
 	
 	public function delete($id) {
 		$post = $this->em->find('models\Post', $id);
+		$user = models\Current_User::user();
 		$success = 0;
-		if ($post) {
+		if ($post && $post->getUser() == $user) {
 			$post->setFlag('deleted');
 			$this->em->flush();
 			$success = 1;
@@ -139,6 +159,26 @@ class Posts extends MY_Controller {
 			$data['post'] = $post;
 			$data['show_title'] = 1;
 			$this->template->build('new_post_form', $data);
+		}
+	}
+	
+	public function comment($id) {
+		if ($this->_submit_comment_validate() === FALSE) {
+			$this->show($id);
+			return;
+		}
+		$post = $this->em->find('models\Post', $id);
+		$user = models\Current_User::user();
+		$content = $this->input->post('comment');
+		if ($post && $user && $post->getFlag()!='deleted') {
+			$comment = new models\Comment;
+			$comment->setUser($user);
+			$comment->setPost($post);
+			$comment->setContent($content);
+			$this->em->persist($comment);
+			$this->em->flush();
+			
+			$this->show($id);
 		}
 	}
 }

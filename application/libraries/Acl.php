@@ -173,6 +173,9 @@ class Acl {
 	}
 
 	function hasPermission($permKey) {
+		if (in_array(5, $this->userRoles)) {
+			return true;
+		}
 		$permKey = strtolower($permKey);
 		if (array_key_exists($permKey,$this->perms))
 		{

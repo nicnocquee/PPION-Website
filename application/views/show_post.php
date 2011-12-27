@@ -66,17 +66,20 @@
 	?>
 	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
-				<form action="<?php echo base_url(); ?>posts/comment">
+				<?php echo form_open('posts/comment/'.$post->getId());  ?>
 				<?php 
 					$data = array(
 								'name' => 'comment',
-								'value' => set_value('comment'),
+								'value' => ($comment_content != NULL)?$comment_content:set_value('comment'),
 								'class' => 'large'
 							);?>
-				<textarea class="span8 commentInput" name="comment" type="textarea" placeholder="Tulis komen disini" rows="1"></textarea>
-			</div>
+				<textarea class="span8 commentInput" name="comment" type="textarea" placeholder="Tulis komen disini" rows="1"><?php 
+					if ($comment_content != NULL) {
+						echo $comment_content;
+					} else echo '';
+				?></textarea></div>
 			<div class="span1 columns commentButton">
-				<button type="submit" class="btn primary">Submit</button>
+				<input type="submit" class="btn primary">
 			</div>
 				<?php echo form_close(); ?>
 			</div>
