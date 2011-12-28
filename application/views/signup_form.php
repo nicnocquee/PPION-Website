@@ -149,7 +149,7 @@ $(document).ready(function(){
 	</div>
 	<div class="<?php if(form_error('gender')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="gender">Jenis kelamin: </label>
-		<div class="input">
+		<div class="input" name="gender">
 		<select>
 			<option>Wanita</option>
 			<option>Pria</option>

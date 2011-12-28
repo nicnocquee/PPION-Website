@@ -9,7 +9,7 @@
 </footer>
 
 <div class="feedback_btn">
-<a href="mailto:captain.ronan@gmail.com">
+<a href="https://docs.google.com/spreadsheet/viewform?formkey=dHgyODAyaEQ0aVhSX2pqN0lpaFZpcXc6MQ" target="_blank">
 <img src="<?php echo base_url(); ?>images/feedback.png" alt="feedback" title="feedback">
 </a>
 </div>

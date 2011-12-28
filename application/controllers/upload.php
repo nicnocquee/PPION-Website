@@ -6,13 +6,13 @@ class Upload extends MY_Controller {
 		$this->load->helper(array('url'));
 	}
 	
-	function do_upload()
+	function doupload()
 		{
 			$config['upload_path'] = APPPATH.'../uploads/';
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size']	= '7000';
-			$config['max_width']  = '8000';
-			$config['max_height']  = '8000';
+			$config['max_width']  = '600';
+			$config['max_height']  = '600';
 	
 			$this->load->library('upload', $config);
 	

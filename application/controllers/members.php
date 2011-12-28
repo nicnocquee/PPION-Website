@@ -12,7 +12,7 @@ class Members extends MY_Controller {
             
     function index() {
     	$query = $this->em->createQuery('SELECT u, p FROM models\User u LEFT JOIN u.contacts p');
-		$query->setMaxResults(5);
+		//$query->setMaxResults(5);
 		$users = $query->getResult();
 		$data['members'] = $users;
 		//$this->load->view('members', $data);

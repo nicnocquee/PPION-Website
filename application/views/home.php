@@ -24,14 +24,15 @@
 		</div>
 		<div class="span-one-third">
 		<div id="recent_events">
-			<h2>Kegiatan terbaru</h2>
+			<!--<h2>Kegiatan terbaru</h2>
 			<ul class="newposts">
 			<?php  
 				foreach ($events as $event) {
 					echo '<li style="margin-left:-25px"><a href="'.base_url().'events/show/'.$event->getId().'">'.$event->getName().'</a></li>';
 				}
 			?>
-			</ul>
+			</ul>-->
+			<center><img src="<?php echo base_url().'images/ppionlogo.png'; ?>" height="160"></center>
 			</div>
 		</div>
 		</div>

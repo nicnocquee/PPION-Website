@@ -72,8 +72,18 @@ class Signup extends MY_Controller {
 				$this->em->flush();
 			}
 		}
+		
+		// assign role id 7 to the new user
+		$this->load->database();
+		$data = array(
+		               'userID' => $user->getId(),
+		               'roleID' => 7,
+		               'addDate' => new DateTime('now')
+		            );
+		
+		$this->db->insert('user_roles', $data); 
 
-		$this->load->view('submit_success');
+		$this->load->view('login_form');
 
 	}
 	
@@ -105,7 +115,7 @@ class Signup extends MY_Controller {
 		$this->form_validation->set_rules('marriage_status', 'Status',
 			'');
 		$this->form_validation->set_rules('gender', 'Jenis kelamin',
-			'required');
+			'');
 		$this->form_validation->set_rules('religion', 'Agama',
 			'');
 		$this->form_validation->set_rules('introduction', 'Bio',

@@ -22,8 +22,13 @@
 	</div>
 	<div class="row sidePost">
 		<div class="media-grid span5 columns">
-			<a href="#" class="label notice like" onclick="return false;" style="display: <?php echo ($liked==0)? '':'none' ?>">Like this article</a>
-			<a href="#" class="label success liked" onclick="return false;" style="display: <?php echo ($liked==0)? 'none':'' ?>">You have liked this article</a>
+			<?php 
+				$user = models\Current_User::user();
+				if ($user) { ?>
+					<a href="#" class="label notice like" onclick="return false;" style="display: <?php echo ($liked==0)? '':'none' ?>">Like this article</a>
+					<a href="#" class="label success liked" onclick="return false;" style="display: <?php echo ($liked==0)? 'none':'' ?>">You have liked this article</a>
+				<?php  }
+			 ?>
 		</div>
 	</div>
 	</div>
@@ -66,6 +71,7 @@
 	?>
 	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
+				<?php if (models\Current_User::user()) { ?>
 				<?php echo form_open('posts/comment/'.$post->getId());  ?>
 				<?php 
 					$data = array(
@@ -83,6 +89,9 @@
 			</div>
 				<?php echo form_close(); ?>
 			</div>
+			<?php  } else { 
+				echo 'You need to login to comment';
+			} ?>
 	</div>
 	</div>
 	</section>
@@ -95,7 +104,7 @@ var postId = '<?php echo $post->getId(); ?>';
 	$(".like").click(function(e){
 	     // stop normal link click
 	     e.preventDefault(); 
-	     $.post('<?php echo base_url(); ?>favorites/add',{post_id:postId, csrf_test_name:$.cookie("csrf_cookie_name")},function(data) {
+	     $.post('<?php echo base_url(); ?>favorites/add',{post_id:postId, csrf_token_name:$.cookie("csrf_cookie_name")},function(data) {
 	     	if (data.result == '1') {
 	     		$('.like').hide();
 	     		$('.liked').fadeIn();

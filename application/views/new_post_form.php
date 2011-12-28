@@ -69,7 +69,7 @@
 				var thumbnailindex = 0;
 			    $('#fileupload').fileupload({
 			        dataType: 'json',
-			        url: '<?php echo base_url(); ?>upload/do_upload/',
+			        url: '<?php echo base_url(); ?>upload/doupload/',
 			        done: function (e, data) {
 			            $.each(data.result, function (index, file) {
 			                var url = "<?php echo base_url(); ?>uploads/"+file.name;
