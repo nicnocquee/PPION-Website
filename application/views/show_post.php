@@ -23,7 +23,7 @@
 	<div class="row sidePost">
 		<div class="media-grid span5 columns">
 			<?php 
-				$user = models\\Current_User::user();
+				$user = models\Current_User::user();
 				if ($user) { ?>
 					<a href="#" class="label notice like" onclick="return false;" style="display: <?php echo ($liked==0)? '':'none' ?>">Like this article</a>
 					<a href="#" class="label success liked" onclick="return false;" style="display: <?php echo ($liked==0)? 'none':'' ?>">You have liked this article</a>
@@ -71,7 +71,7 @@
 	?>
 	<div class="row commentBox commentInputBox">
 			<div class="span8 columns">
-				<?php if (models\\Current_User::user()) { ?>
+				<?php if (models\Current_User::user()) { ?>
 				<?php echo form_open('posts/comment/'.$post->getId());  ?>
 				<?php 
 					$data = array(

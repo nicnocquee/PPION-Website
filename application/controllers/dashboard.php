@@ -77,7 +77,7 @@ class Dashboard extends MY_Controller {
 	}
 	
 	private function _fetchMyArticles($startPage) {
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		$posts = array();
 		if ($user) {
 			$query = $this->em->createQuery('SELECT p FROM models\Post p WHERE p.user = ?1 AND p.flag IS NULL ORDER BY p.created_at DESC');
@@ -93,7 +93,7 @@ class Dashboard extends MY_Controller {
 	
 	private function _fetchMyFavorites() {
 		$this->load->helper('date');
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		if ($user) {
 			$q = $this->em->createQuery('select f.created_at, p.id as post_id, p.title from models\Favorite f LEFT JOIN f.post p WHERE f.user = ?1 ORDER BY f.created_at DESC');
 			$q->setParameter(1, $user->getId());

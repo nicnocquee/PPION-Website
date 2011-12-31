@@ -10,7 +10,7 @@ class Favorites extends MY_Controller {
 	}
             
     function index() {
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		if ($user) {
 			$query = $this->em->createQuery('SELECT f FROM models\Favorite f WHERE f.user = ?1 ORDER BY f.created_at DESC');
 			$query->setParameter(1, $user->getId());
@@ -33,7 +33,7 @@ class Favorites extends MY_Controller {
 		log_message('debug', 'add');
 		if ($post_id = $this->input->post('post_id', TRUE)) {
 			log_message('debug', 'add favorites');
-			$user = models\\Current_User::user();
+			$user = models\Current_User::user();
 			if ($user) {
 				$post = $this->em->find('models\Post', $post_id);
 				log_message('debug', 'add favorites - we got the user');

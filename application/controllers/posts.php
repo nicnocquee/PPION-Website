@@ -38,7 +38,7 @@ class Posts extends MY_Controller {
 			$this->template->title($post->getTitle());
 			$data['show_title'] = 0;
 			
-			$user = models\\Current_User::user();
+			$user = models\Current_User::user();
 			$favorite = NULL;
 			if ($user) {
 				$favorite = $this->em->getRepository('models\\Favorite')->findOneBy(array('user' => $user->getId(), 'post' => $id));
@@ -89,7 +89,7 @@ class Posts extends MY_Controller {
 			$tagsArray[] = $tag1;
 		}
 		
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		$post = NULL;
 		if ($this->input->post('edit') == 0) {
 			$post = new models\Post;
@@ -141,7 +141,7 @@ class Posts extends MY_Controller {
 	
 	public function delete($id) {
 		$post = $this->em->find('models\Post', $id);
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		$success = 0;
 		if ($post && $post->getUser() == $user) {
 			$post->setFlag('deleted');
@@ -168,7 +168,7 @@ class Posts extends MY_Controller {
 			return;
 		}
 		$post = $this->em->find('models\Post', $id);
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		$content = $this->input->post('comment');
 		if ($post && $user && $post->getFlag()!='deleted') {
 			$comment = new models\Comment;
