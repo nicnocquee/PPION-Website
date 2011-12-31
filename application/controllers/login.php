@@ -43,7 +43,7 @@ class Login extends MY_Controller {
 	}
 	
 	public function authenticate() {
-		return models\Current_User::login(trim($this->input->post('email')), $this->input->post('password'));
+		return models\\Current_User::login(trim($this->input->post('email')), $this->input->post('password'));
 
 	}
 }
