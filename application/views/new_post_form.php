@@ -59,7 +59,7 @@
 			<input id="fileupload" type="file" name="userfile" multiple><div class="meter orange nostripes" style="display: none">
 				<span style="width: 30%"></span>
 			</div>
-			<span class="help-block">Allowed file types: JPG, PNG. Max size 600x600 px. <strong id="image-help" style="display: none">Click on the image(s) below to insert it to the post.</strong></span>
+			<span class="help-block">Allowed file types: JPG, PNG. <strong>Max size 600x600 px</strong>. <strong id="image-help" style="display: none">Click on the image(s) below to insert it to the post.</strong></span>
 			<div class="imagepreviews" style="display: none">
 			</div>
 			<script src="<?php echo base_url(); ?>js/upload/jquery.iframe-transport.js"></script>

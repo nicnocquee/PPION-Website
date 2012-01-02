@@ -10,7 +10,7 @@
 	  </ul>
 	<ul class="nav secondary-nav">
 	<?php  
-		$user = models\\Current_User::user();
+		$user = models\Current_User::user();
 		if (!$user) { ?>
 			<?php echo form_open('login/submit'); ?>
 				<input class="input-small" type="text" placeholder="E-mail" name="email">

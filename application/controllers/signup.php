@@ -75,10 +75,11 @@ class Signup extends MY_Controller {
 		
 		// assign role id 7 to the new user
 		$this->load->database();
+		$date = new DateTime('now');
 		$data = array(
 		               'userID' => $user->getId(),
 		               'roleID' => 7,
-		               'addDate' => new DateTime('now')
+		               'addDate' => $date->format('Y-m-d H:i:s')
 		            );
 		
 		$this->db->insert('user_roles', $data); 

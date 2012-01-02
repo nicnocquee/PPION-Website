@@ -18,7 +18,7 @@ function __construct()  {
 		$allPerms = $this->acl->getAllPerms('full');
 		
 		if (array_key_exists($con_met, $allPerms)) {
-			$user = models\\Current_User::user();
+			$user = models\Current_User::user();
 			if (!$user) {
 				$next = '/'.$controller.'/'.$method.'/'.$this->uri->segment(3);
 				if ($this->input->post()) {
