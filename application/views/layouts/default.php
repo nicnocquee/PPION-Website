@@ -36,6 +36,7 @@
 
 <body>
 <?php include dirname(__FILE__).'/../header.php'; ?>
+<div class="container">
 <section>
 		<div class="container">
 		<?php if (isset($show_title) && $show_title == 1) { ?>
@@ -46,6 +47,7 @@
 		<?php echo $template['body']; ?>
 		</div>
 </section>
+</div>
 <?php include dirname(__FILE__).'/../footer.php'; ?>
 </body>
 </html>

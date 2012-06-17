@@ -1,7 +1,7 @@
 <div id="members">
 	
 
-<table class="zebra-striped" id="sortTableExample">
+<table class="table table-striped" id="sortTableExample">
 <thead>
 <tr>
 		<th>Nama</th>

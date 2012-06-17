@@ -10,11 +10,11 @@
 <div class="span12">
 	<div class="row">
 		<div class="span12">
-			<ul class="tabs">
+			<ul class="nav nav-tabs">
 				<li class="active activities-tab"><a href="javascript:activities()">Aktivitas</a></li>
 				<li class="myarticles-tab"><a href="javascript:myarticles()">Artikelku</a></li>
 				<!--<li class="myevents-tab"><a href="javascript:myevents()">Eventku</a></li>-->
-				<li class="myfavoritearticles-tab"><a href="javascript:myfavoritearticles()">Artikel Favorit</a></li>
+				<!--<li class="myfavoritearticles-tab"><a href="javascript:myfavoritearticles()">Artikel Favorit</a></li>-->
 			</ul>
 		</div>
 	</div>

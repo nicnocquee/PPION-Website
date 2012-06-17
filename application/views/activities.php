@@ -1,4 +1,4 @@
-<table class="borderless-table">
+<table class="table table-striped">
 <tbody>
 <?php 
 	foreach ($activities as $activity) { 

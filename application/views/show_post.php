@@ -1,45 +1,26 @@
-<div class="alert-message warning hide fade in" data-alert="alert" id="likeAlert">
-  <a class="close" href="#">x</a>
-  <p><strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.</p>
-</div>
 <div id="post">
 	<div class="page-header">
 	<h2><?php echo $post->getTitle(); ?></h2>
+	<div class="postTitleDate"><small class="postTitleDate">by <a href="/members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><em><?php echo $post->getUser()->getName(); ?></em></strong></a> on <?php echo $post->getCreatedAt()->format('l F j, Y, g:i a'); ?></small></div>
 	</div>
+	
 	<div id='description' class="row">
-	<div id='content' class="span10 columns">
+	<div id='content' class="span12">
 		<?php echo $this->mymarkdown->convert(nl2br($post->getContent())); ?>
 	</div>
-	<div id='side' class="span6 columns">
-	<div class="row sidePost">
-		<div class="media-grid span2 columns">
-						<a href="#">
-						  <img class="thumbnail" src="http://placehold.it/90x90" alt="">
-						</a>
-					</div>
-		<div class="span3 columns sidePostName"><a href="<?php echo base_url(); ?>members/<?php echo $post->getUser()->getId();?>" class="userName"><strong><?php echo $post->getUser()->getName(); ?></strong></a>
-		on <?php echo $post->getCreatedAt()->format('l F j, Y g:i a e'); ?></div>
-	</div>
-	<div class="row sidePost">
-		<div class="media-grid span5 columns">
-			<?php 
-				$user = models\Current_User::user();
-				if ($user) { ?>
-					<a href="#" class="label notice like" onclick="return false;" style="display: <?php echo ($liked==0)? '':'none' ?>">Like this article</a>
-					<a href="#" class="label success liked" onclick="return false;" style="display: <?php echo ($liked==0)? 'none':'' ?>">You have liked this article</a>
-				<?php  }
-			 ?>
-		</div>
-	</div>
-	</div>
+	
 	</div>
 	<div class="row"><div class="span10 columns"><div class="post-footer">
 	Tags: <?php echo implode(', ', $post->getTagsNameArray()); ?>
 	</div></div></div>
-	<section>
-	<h2>Comments</h2>
+	
+	<div class="page-header">
+	<h2>Comments</h2><?php if (!models\Current_User::user()) { ?><span class="label label-warning">Login to comment</span>
+	<?php } ?>
+	</div>
 	<div class="row">
-	<div class="span10 columns">
+	
+	<div class="span12">
 	<?php
 		if (isset($comments) && count($comments)>0) {
 			foreach($comments as $comment){
@@ -89,12 +70,9 @@
 			</div>
 				<?php echo form_close(); ?>
 			</div>
-			<?php  } else { 
-				echo 'You need to login to comment';
-			} ?>
+			<?php  }?>
 	</div>
 	</div>
-	</section>
 </div>
 
 <script>
