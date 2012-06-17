@@ -12,13 +12,9 @@
     
 
     <!-- Le javascript -->
-   <!-- <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>js/google-code-prettify/prettify.js"></script>
-    <script src="<?php echo base_url(); ?>js/application.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap-dropdown.js"></script>
-    <script src="<?php echo base_url(); ?>js/bootstrap-alerts.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery.cookie.js"></script>
 
 	<!-- Le styles -->
