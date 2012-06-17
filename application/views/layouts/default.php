@@ -9,13 +9,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le styles -->
-    <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/progress.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/pagedown.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>js/google-code-prettify/prettify.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>js/jwysiwyg/jquery.wysiwyg.css" rel="stylesheet">
+    
 
     <!-- Le javascript -->
    <!-- <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>-->
@@ -27,6 +21,13 @@
     <script src="<?php echo base_url(); ?>js/bootstrap-alerts.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery.cookie.js"></script>
 
+	<!-- Le styles -->
+	<link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>css/progress.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>css/pagedown.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>js/google-code-prettify/prettify.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>js/jwysiwyg/jquery.wysiwyg.css" rel="stylesheet">
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
