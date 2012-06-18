@@ -8,7 +8,7 @@ class Home extends MY_Controller {
 	}
             
     function index() {
-	    $q = $this->em->createQuery("select p from models\Post p where p.flag is null");
+	    $q = $this->em->createQuery("select p from models\Post p where p.flag is null order by p.created_at DESC");
 	    $q->setMaxResults(9);
     	$recentPosts = $q->getResult();
     	//$q = $this->em->createQuery("select e from models\Event e");
