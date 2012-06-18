@@ -152,6 +152,11 @@
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+define('NICUPLOAD_PATH', APPPATH.'../uploads'); // Set the path (relative or absolute) to
+                                      // the directory to save image files
+                                      
+define('NICUPLOAD_URI', $_SERVER['SERVER_NAME'].'/uploads');   // Set the URL (relative or absolute) to
+                                      // the directory defined above
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

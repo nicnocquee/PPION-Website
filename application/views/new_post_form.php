@@ -1,4 +1,4 @@
-<div id="newpost_form" class="span16 columns">
+<div id="newpost_form" class="span12">
 	<?php 
 		echo form_open('posts/submit', array('id' => 'newpost_form')); 
 		if ($post) { ?>
@@ -26,10 +26,18 @@
 		</div>
 	</div>
 	
+			
 	
 	<div class="<?php if(form_error('content')=="") echo "clearfix"; else echo "clearfix error" ?>">
 		<label for="content">Isi: </label>
-		<div class="wmd-panel">
+		<script src="<?php echo(base_url().'js/nicEdit/nicEdit.js') ?>" type="text/javascript"></script>
+		<script type="text/javascript">bkLib.onDomLoaded(function() {new nicEditor({fullPanel: true, uploadURI : '<?php echo(base_url().'js/nicUpload.php'); ?>', iconsPath: '<?php echo(base_url().'js/nicEdit/nicEditorIcons.gif') ?>'}).panelInstance('area2');	
+			}
+		);</script>
+		<textarea name="content" id="area2" style="width: 100%; height: 100px;">
+		       <?php if ($post) echo($post->getContent()); ?>
+		</textarea>						
+		<!--<div class="wmd-panel">
 		<div class="input">
 			<div id="wmd-button-bar"></div>
 		<?php 
@@ -50,10 +58,10 @@
 		<br />Check <a href="http://daringfireball.net/projects/markdown/dingus">here</a> for more syntaxes.</span>
 		<span class="help-inline"><?php echo form_error('content'); ?></span>
 		</div>
-		</div>
+		</div>-->
 	</div>
 	
-	<div class="clearfix">
+	<!--<div class="clearfix">
 		<label for="upload">Upload image: </label>
 		<div class="input">
 			<input id="fileupload" type="file" name="userfile" multiple><div class="meter orange nostripes" style="display: none">
@@ -108,7 +116,7 @@
 			});
 			</script>
 		</div>
-	</div>
+	</div>-->
 	
 	
 	<div class="<?php if(form_error('tags')=="") echo "clearfix"; else echo "clearfix error" ?>">		
@@ -132,7 +140,7 @@
 
 	<?php echo form_close(); ?>
 </div>
-<div class="row">
+<!--<div class="row">
 	<div class="span16 preview">
 		<h2>Preview</h2>
 		<div class="wmd-preview post-preview" id="wmd-preview"></div>
@@ -149,7 +157,7 @@
         editor1 = new Markdown.Editor(converter1);
         editor1.run();
     })();
-</script>
+</script>-->
 
 <!--<script src="<?php echo base_url(); ?>js/cookie/jquery.cookie.js"></script>
 <script type="text/javascript">
