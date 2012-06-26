@@ -70,7 +70,6 @@ class Posts extends MY_Controller {
 		/*$this->load->library('unit_test');
 		echo $this->unit->run($this->input->post('number_of_contacts'), 4);
 		return;*/
-		
 		if ($this->_submit_validate() === FALSE) {
 			$this->add();
 			return;
@@ -103,7 +102,7 @@ class Posts extends MY_Controller {
 		$post->setTags($tagsArray);
 		$this->em->persist($post);
 		$this->em->flush();
-
+		$this->db->cache_delete('posts','index');
 		$this->index();
 
 	}
@@ -149,6 +148,7 @@ class Posts extends MY_Controller {
 			$success = 1;
 		}
 		$data['success'] = $success;
+		$this->db->cache_delete('posts','index');
 		$this->load->view('post_delete', $data);
 	}
 	
